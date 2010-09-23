@@ -15,7 +15,7 @@ import javax.persistence.Id;
 public class Estado extends GenericModel {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     private String nomeEstado;

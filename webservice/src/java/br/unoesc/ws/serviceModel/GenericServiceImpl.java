@@ -1,6 +1,8 @@
 
 package br.unoesc.ws.serviceModel;
 
+import br.unoesc.ws.exceptions.AlterarException;
+import br.unoesc.ws.exceptions.SalvarException;
 import br.unoesc.ws.model.GenericModel;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -39,13 +41,15 @@ public class GenericServiceImpl<ModelClass extends GenericModel> {
         return emf.createEntityManager();
     }
 
-    public void salvar(ModelClass objeto) {
+    public void salvar(ModelClass objeto) throws SalvarException {
         EntityManager em = null;
         try {
             em = getEntityManager(); //Pego entityManager que possui a conexao com o banco
             em.getTransaction().begin(); //inicio uma transação com o banco
             em.persist(objeto);//faço o insert
             em.getTransaction().commit();//fecho a transação com um commit
+        } catch (Exception e) {
+            throw new SalvarException(e.getMessage());
         } finally {
             if (em != null) {
                 em.close();//encerro a conexao;
@@ -53,13 +57,15 @@ public class GenericServiceImpl<ModelClass extends GenericModel> {
         }
     }
 
-    public void alterar(ModelClass objeto) {
+    public void alterar(ModelClass objeto) throws AlterarException {
         EntityManager em = null;
         try {
             em = getEntityManager(); //Pego entityManager que possui a conexao com o banco
             em.getTransaction().begin(); //inicio uma transação com o banco
             objeto = em.merge(objeto);//faço alteracao nos dados do objeto
             em.getTransaction().commit();//fecho a transação com um commit
+        }catch(Exception e){
+            throw new AlterarException(e.getMessage());
         } finally {
             if (em != null) {
                 em.close();//encerro a conexao;
@@ -104,7 +110,7 @@ public class GenericServiceImpl<ModelClass extends GenericModel> {
         }
     }
 
-    public void salvarOuAlterar(ModelClass modelClass){
+    public void salvarOuAlterar(ModelClass modelClass) throws SalvarException, AlterarException{
         if(modelClass.getId()!=null){
             alterar(modelClass);
         }else{
