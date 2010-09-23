@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 public abstract class Pessoa extends GenericModel {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String nomePessoa;
     private String endereco;
