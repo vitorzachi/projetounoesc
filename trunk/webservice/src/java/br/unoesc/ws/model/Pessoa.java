@@ -8,6 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import org.apache.commons.lang.builder.CompareToBuilder;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  *
@@ -59,6 +64,27 @@ public abstract class Pessoa extends GenericModel {
     public void setNomePessoa(String nomePessoa) {
         this.nomePessoa = nomePessoa;
     }
+ @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        Pessoa outro = (Pessoa) obj;
+        return new EqualsBuilder().append(this.getNomePessoa(), outro.getNomePessoa()).isEquals();
+    }
 
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(this.getNomePessoa()).hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("Nome", this.getNomePessoa()).toString();
+    }
+
+    public int compareTo(Pessoa o) {
+        return new CompareToBuilder().append(this.getNomePessoa(), o.getNomePessoa()).toComparison();
+    }
 
 }

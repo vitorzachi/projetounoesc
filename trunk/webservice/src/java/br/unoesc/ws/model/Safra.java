@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package br.unoesc.ws.model;
 
@@ -12,6 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.apache.commons.lang.builder.CompareToBuilder;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  *
@@ -62,6 +63,29 @@ public class Safra extends GenericModel{
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+@Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        Safra outro = (Safra) obj;
+        return new EqualsBuilder().append(this.getNome(), outro.getNome()).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(this.getNome()).hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("Nome", this.getNome()).toString();
+    }
+
+    public int compareTo(Safra o) {
+        return new CompareToBuilder().append(this.getNome(), o.getNome()).toComparison();
     }
 
 

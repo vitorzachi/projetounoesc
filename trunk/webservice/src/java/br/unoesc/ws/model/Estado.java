@@ -6,6 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import org.apache.commons.lang.builder.CompareToBuilder;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  *
@@ -51,4 +56,33 @@ public class Estado extends GenericModel {
     }
 
 
+ @Override
+    public boolean equals(Object obj){
+     if(obj == null){
+         return false;
+     }
+        Estado outro=(Estado)obj;
+        return new EqualsBuilder()
+                .append(this.getNomeEstado(),outro.getNomeEstado())
+                .isEquals();
+    }
+
+ @Override
+ public int hashCode(){
+     return new HashCodeBuilder()
+             .append(this.getNomeEstado())
+             .hashCode();
+ }
+
+ @Override
+ public String toString(){
+     return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
+             .append("Nome",this.getNomeEstado()).toString();
+ }
+
+ public int compareTo(Estado o){
+     return new CompareToBuilder()
+             .append(this.getNomeEstado(),o.getNomeEstado())
+             .toComparison();
+ }
 }
