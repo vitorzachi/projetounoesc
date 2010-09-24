@@ -24,7 +24,7 @@ public class Safra extends GenericModel{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    private String nome;
+    private String nomeSafra;
     @Temporal(TemporalType.DATE)
     private Date inicioSafra;
     @Temporal(TemporalType.DATE)
@@ -57,12 +57,12 @@ public class Safra extends GenericModel{
         this.inicioSafra = inicioSafra;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeSafra() {
+        return nomeSafra;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeSafra(String nome) {
+        this.nomeSafra = nome;
     }
 
 @Override
@@ -71,21 +71,21 @@ public class Safra extends GenericModel{
             return false;
         }
         Safra outro = (Safra) obj;
-        return new EqualsBuilder().append(this.getNome(), outro.getNome()).isEquals();
+        return new EqualsBuilder().append(this.getNomeSafra(), outro.getNomeSafra()).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(this.getNome()).hashCode();
+        return new HashCodeBuilder().append(this.getNomeSafra()).hashCode();
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("Nome", this.getNome()).toString();
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("Nome", this.getNomeSafra()).toString();
     }
 
     public int compareTo(Safra o) {
-        return new CompareToBuilder().append(this.getNome(), o.getNome()).toComparison();
+        return new CompareToBuilder().append(this.getNomeSafra(), o.getNomeSafra()).toComparison();
     }
 
 
