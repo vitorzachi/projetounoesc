@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -21,6 +23,9 @@ public class ConversorSafra extends GenericModel{
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private Integer multiplicador;
+    @ManyToOne
+    private Cereal cereal;
+    @ManyToMany
     private Safra safraValida;
 
     public ConversorSafra() {
@@ -28,6 +33,14 @@ public class ConversorSafra extends GenericModel{
 
     public Long getId() {
         return id;
+    }
+
+    public Cereal getCereal() {
+        return cereal;
+    }
+
+    public void setCereal(Cereal cereal) {
+        this.cereal = cereal;
     }
 
     public void setId(Long id) {
