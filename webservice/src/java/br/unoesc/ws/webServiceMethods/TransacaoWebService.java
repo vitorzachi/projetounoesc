@@ -3,11 +3,8 @@ package br.unoesc.ws.webServiceMethods;
 import br.unoesc.ws.configs.CodigosRetorno;
 import br.unoesc.ws.exceptions.AlterarException;
 import br.unoesc.ws.exceptions.SalvarException;
-import br.unoesc.ws.model.Produtor;
-import br.unoesc.ws.model.Transacao;
-import br.unoesc.ws.serviceModel.TransacaoServiceImpl;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import br.unoesc.ws.model.TransacaoCredito;
+import br.unoesc.ws.serviceModel.TransacaoCreditoServiceImpl;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -16,12 +13,12 @@ import javax.jws.WebService;
  *
  * @author vitor
  */
-@WebService(serviceName = "TransacaoWS")
+@WebService()
 public class TransacaoWebService {
 
-    @WebMethod(operationName = "incluirTransacao")
-    public Integer incluiTransacaoWeb(@WebParam(name = "Transacao") Transacao t) throws SalvarException{
-        TransacaoServiceImpl tImpl = new TransacaoServiceImpl();
+    @WebMethod(operationName = "incluirTransacaoCredito")
+    public Integer incluiTransacaoCreditoWeb(@WebParam(name = "TransacaoCred") TransacaoCredito t) throws SalvarException{
+        TransacaoCreditoServiceImpl tImpl = new TransacaoCreditoServiceImpl();
         try {
             tImpl.incluiTransacao(t);
             return CodigosRetorno.SUCESSO_AO_SALVAR;

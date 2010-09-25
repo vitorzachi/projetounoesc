@@ -5,21 +5,46 @@
  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="TransacaoWS" targetNamespace="http://webServiceMethods.ws.unoesc.br/" xmlns:tns="http://webServiceMethods.ws.unoesc.br/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:sc="http://schemas.sun.com/2006/03/wss/server" xmlns:wspp="http://java.sun.com/xml/ns/wsit/policy"
  >
-    <message name="incluirTransacao"/>
-    <message name="incluirTransacaoResponse"/>
+    <message name="incluirTransacaoCredito"/>
+    <message name="incluirTransacaoCreditoResponse"/>
     <portType name="TransacaoWebService">
-        <operation name="incluirTransacao">
-            <input message="tns:incluirTransacao"/>
-            <output message="tns:incluirTransacaoResponse"/>
+        <operation name="incluirTransacaoCredito">
+            <input message="tns:incluirTransacaoCredito"/>
+            <output message="tns:incluirTransacaoCreditoResponse"/>
         </operation>
     </portType>
     <binding name="TransacaoWebServicePortBinding" type="tns:TransacaoWebService">
-        <operation name="incluirTransacao">
-            <input></input>
-            <output></output>
+        <operation name="incluirTransacaoCredito">
+            <input/>
+            <output/>
+            <fault/>
         </operation>
     </binding>
     <service name="TransacaoWS">
         <port name="TransacaoWebServicePort" binding="tns:TransacaoWebServicePortBinding"/>
     </service>
+    <wsp:Policy wsu:Id="TransacaoWebServicePortBinding_incluirTransacao_Input_Policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:EncryptedParts>
+                    <sp:Body/>
+                </sp:EncryptedParts>
+                <sp:SignedParts>
+                    <sp:Body/>
+                </sp:SignedParts>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsp:Policy wsu:Id="TransacaoWebServicePortBinding_incluirTransacao_Output_Policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:EncryptedParts>
+                    <sp:Body/>
+                </sp:EncryptedParts>
+                <sp:SignedParts>
+                    <sp:Body/>
+                </sp:SignedParts>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
 </definitions>
