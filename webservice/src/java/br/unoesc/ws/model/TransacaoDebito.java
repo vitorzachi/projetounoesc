@@ -7,7 +7,7 @@ import javax.persistence.Entity;
  *
  * @author vitor
  */
-@Entity
+//@Entity
 public class TransacaoDebito {
 
 }
