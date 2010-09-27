@@ -1,12 +1,12 @@
 
 package br.unoesc.ws.serviceModel;
 
-import br.unoesc.ws.model.GenericModel;
+import br.unoesc.ws.model.Empresa;
 
 /**
  *
  * @author leandro
  */
-public class EmpresaServiceImpl extends GenericServiceImpl<GenericModel>{
+public class EmpresaServiceImpl extends GenericServiceImpl<Empresa>{
 
 }
