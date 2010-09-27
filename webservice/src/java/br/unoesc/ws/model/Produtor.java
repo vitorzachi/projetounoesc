@@ -1,6 +1,7 @@
 
 package br.unoesc.ws.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
@@ -10,6 +11,7 @@ import javax.persistence.Entity;
 @Entity
 public class Produtor extends Pessoa{
 
+    @Column(unique=true,nullable=false,length=11)
     private String cpf;
 
     public Produtor() {

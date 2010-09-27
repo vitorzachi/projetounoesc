@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 /**
  *
@@ -25,7 +26,8 @@ public class ConversorSafra extends GenericModel{
     private Integer multiplicador;
     @ManyToOne
     private Cereal cereal;
-    @ManyToMany
+//    @ManyToMany
+    @Transient
     private Safra safraValida;
 
     public ConversorSafra() {
