@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.commons.lang.builder.CompareToBuilder;
@@ -29,6 +30,9 @@ public class Safra extends GenericModel{
     private Date inicioSafra;
     @Temporal(TemporalType.DATE)
     private Date fimSafra;
+    @ManyToOne
+    private Cereal cereal;
+    private Long multiplicadorCredito;
 
     public Safra() {
     }
@@ -63,6 +67,22 @@ public class Safra extends GenericModel{
 
     public void setNomeSafra(String nome) {
         this.nomeSafra = nome;
+    }
+
+    public Cereal getCereal() {
+        return cereal;
+    }
+
+    public void setCereal(Cereal cereal) {
+        this.cereal = cereal;
+    }
+
+    public Long getMultiplicadorCredito() {
+        return multiplicadorCredito;
+    }
+
+    public void setMultiplicadorCredito(Long multiplicadorCredito) {
+        this.multiplicadorCredito = multiplicadorCredito;
     }
 
 @Override

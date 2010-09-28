@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,6 +17,7 @@ import javax.persistence.TemporalType;
  * @author vitor
  */
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Transacao extends GenericModel {
 
     @Id
@@ -23,10 +26,7 @@ public abstract class Transacao extends GenericModel {
     private Long numeroNotaFiscal;
     @Column(length = 2)
     private String serieNotaFiscal;
-    @ManyToOne
-    private Produtor produtor;
-    @ManyToOne
-    private Empresa empresaGeradora;
+    
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataTransacao;
     private Float quantidade;
@@ -65,13 +65,7 @@ public abstract class Transacao extends GenericModel {
         this.dataTransacao = data;
     }
 
-    public Empresa getEmpresaGeradora() {
-        return empresaGeradora;
-    }
-
-    public void setEmpresaGeradora(Empresa empresaGeradora) {
-        this.empresaGeradora = empresaGeradora;
-    }
+   
 
     public Long getId() {
         return id;
@@ -81,14 +75,7 @@ public abstract class Transacao extends GenericModel {
         this.id = id;
     }
 
-    public Produtor getProdutor() {
-        return produtor;
-    }
-
-    public void setProdutor(Produtor produtor) {
-        this.produtor = produtor;
-    }
-
+    
     public Float getQuantidade() {
         return quantidade;
     }
