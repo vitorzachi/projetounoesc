@@ -1,6 +1,5 @@
 package br.unoesc.ws.test.produtor;
 
-import br.unoesc.ws.exceptions.ProdutorNotFoundException;
 import br.unoesc.ws.exceptions.SalvarException;
 import br.unoesc.ws.model.Produtor;
 import br.unoesc.ws.serviceModel.ProdutorServiceImpl;
