@@ -11,7 +11,9 @@ import br.unoesc.ws.serviceModel.CerealServiceImpl;
 import br.unoesc.ws.serviceModel.EmpresaServiceImpl;
 import br.unoesc.ws.serviceModel.ProdutorServiceImpl;
 import br.unoesc.ws.serviceModel.TransacaoCreditoServiceImpl;
-import br.unoesc.ws.webmodel.TransacaoCreditoModel;
+import br.unoesc.ws.webModelEntrada.TransacaoCreditoModel;
+import br.unoesc.ws.webModelRetorno.ObjetoRetorno;
+import br.unoesc.ws.webModelRetorno.ObjetoRetorno;
 import java.util.Date;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -25,7 +27,7 @@ import javax.jws.WebService;
 public class TransacaoWS {
 
     @WebMethod
-    public Integer incluirCredito(@WebParam(name="transacaoCredito")TransacaoCreditoModel t) {
+    public int incluirCredito(@WebParam(name = "transacaoCredito") TransacaoCreditoModel t) {
 
         TransacaoCreditoServiceImpl ti = new TransacaoCreditoServiceImpl();
         CerealServiceImpl c = new CerealServiceImpl();
@@ -50,13 +52,15 @@ public class TransacaoWS {
             tc.setSerieNotaFiscal(null);
         } catch (Exception ex) {
         }
-
+        ObjetoRetorno retorno = new ObjetoRetorno();
 
         try {
             ti.salvar(tc);
-            return CodigosRetorno.SUCESSO_AO_SALVAR;
+//            return retorno;
+            return 1;
         } catch (SalvarException ex) {
-            return CodigosRetorno.ERRO_AO_SALVAR;
+//            return retorno;
+            return 2;
         }
     }
 }

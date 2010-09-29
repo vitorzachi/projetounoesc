@@ -1,4 +1,4 @@
-package br.unoesc.ws.webmodel;
+package br.unoesc.ws.webModelEntrada;
 
 /**
  *
