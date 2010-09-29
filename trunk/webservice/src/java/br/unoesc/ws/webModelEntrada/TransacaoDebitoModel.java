@@ -1,5 +1,7 @@
 
-package br.unoesc.ws.webmodel;
+package br.unoesc.ws.webModelEntrada;
+
+import br.unoesc.ws.webmodel.*;
 
 /**
  *
