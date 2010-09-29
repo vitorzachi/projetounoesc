@@ -1,6 +1,7 @@
 
 package br.unoesc.ws.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,8 +26,12 @@ public abstract class Pessoa extends GenericModel {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+
+    @Column(nullable=false)
     private String nomePessoa;
+
     private String endereco;
+    
     @ManyToOne
     private Cidade cidade;
 

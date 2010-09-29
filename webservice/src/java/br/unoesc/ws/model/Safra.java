@@ -1,7 +1,10 @@
-
 package br.unoesc.ws.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,18 +23,22 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * @author vitor
  */
 @Entity
-public class Safra extends GenericModel{
+public class Safra extends GenericModel {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false)
     private String nomeSafra;
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Date inicioSafra;
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Date fimSafra;
     @ManyToOne
     private Cereal cereal;
+    @Column(nullable = false)
     private Long multiplicadorCredito;
 
     public Safra() {
@@ -69,6 +76,10 @@ public class Safra extends GenericModel{
         this.nomeSafra = nome;
     }
 
+    public void setNomeSafra() {
+        this.nomeSafra = new SimpleDateFormat("yyyy").format(inicioSafra) + "/" + new SimpleDateFormat("yyyy").format(fimSafra);
+    }
+
     public Cereal getCereal() {
         return cereal;
     }
@@ -85,7 +96,7 @@ public class Safra extends GenericModel{
         this.multiplicadorCredito = multiplicadorCredito;
     }
 
-@Override
+    @Override
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
@@ -107,6 +118,4 @@ public class Safra extends GenericModel{
     public int compareTo(Safra o) {
         return new CompareToBuilder().append(this.getNomeSafra(), o.getNomeSafra()).toComparison();
     }
-
-
 }

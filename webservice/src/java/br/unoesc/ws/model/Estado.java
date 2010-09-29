@@ -22,9 +22,11 @@ public class Estado extends GenericModel {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-
+    
+    @Column(nullable=false,unique=true)
     private String nomeEstado;
-    @Column( length=2)
+
+    @Column(nullable=false,unique=true, length=2)
     private String siglaEstado;
 
     public Estado() {

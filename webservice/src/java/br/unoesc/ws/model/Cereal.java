@@ -59,7 +59,7 @@ public class Cereal extends GenericModel {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("Nome", this.getNome()).toString();
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("", this.getNome()).toString();
     }
 
     public int compareTo(Cereal o) {

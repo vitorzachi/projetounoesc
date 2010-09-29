@@ -2,6 +2,7 @@
 package br.unoesc.ws.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -16,6 +17,7 @@ public class Boleto extends GenericModel{
     private Long id;
     @OneToOne(cascade=CascadeType.ALL)
     private TransacaoCredito transacaoCredito;
+    @Column(nullable=false)
     private boolean pago;
 
     public Boleto() {
