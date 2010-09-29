@@ -16,12 +16,6 @@ import static org.junit.Assert.*;
 
 public class CidadeServiceImplTest {
 
-/* @Test
-    public void testGetEntityManager() {
-        CidadeServiceImpl cidadeServiceImpl=new CidadeServiceImpl();
-        assertNotNull(cidadeServiceImpl.getEntityManager());
-    }*/
-
     @Test
     public void testSaveCidade() {
         CidadeServiceImpl cidadeServiceImpl=new CidadeServiceImpl();
@@ -80,32 +74,4 @@ public class CidadeServiceImplTest {
         Cidade c = (Cidade) new CidadeServiceImpl().getById(cidade.getId());
         assertNotNull(c);
     }
-
-  /*  @Test
-    public void testGetCidades() {
-        CidadeServiceImpl cidadeServiceImpl=new CidadeServiceImpl();
-        Cidade cidade = new Cidade();
-        cidade.setNomeCidade("Teste Get");
-        try {
-            cidadeServiceImpl.salvar(cidade);
-        } catch (SalvarException ex) {
-            Logger.getLogger(CidadeServiceImplTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        List<Cidade> cidades = cidadeServiceImpl.getAll();
-        boolean achou = false;
-        for (Cidade cid : cidades) {
-            if (cid.getNomeCidade().equals(cidade.getNomeCidade())) {
-                assertTrue(true);
-                achou = true;
-                break;
-            }
-        }
-        if (!achou) {
-            fail("Não achou!");
-        }
-    }
-
-   */
-
 }
