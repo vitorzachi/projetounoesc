@@ -13,8 +13,26 @@ public class Empresa extends Pessoa{
 
     @Column(nullable=false,unique=true)
     private String cnpj;
+    private String usuario;
+    private String senha;
 
     public Empresa() {
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getCnpj() {
