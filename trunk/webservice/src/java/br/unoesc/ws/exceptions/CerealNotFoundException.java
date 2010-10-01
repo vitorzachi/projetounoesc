@@ -12,7 +12,7 @@ package br.unoesc.ws.exceptions;
 public class CerealNotFoundException extends Exception{
 
     public CerealNotFoundException() {
-        super("Não existe Cereal com esse código");
+        super("Não existe cereal com esse código");
     }
 
 

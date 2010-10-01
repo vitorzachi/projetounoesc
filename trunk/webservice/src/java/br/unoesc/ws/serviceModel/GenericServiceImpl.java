@@ -88,7 +88,7 @@ public class GenericServiceImpl<ModelClass extends GenericModel> {
         }
     }
 
-    public ModelClass getById(Long codigo) {
+    protected  ModelClass getById(Long codigo) {
         EntityManager em = null;
         try {
             em = getEntityManager();
