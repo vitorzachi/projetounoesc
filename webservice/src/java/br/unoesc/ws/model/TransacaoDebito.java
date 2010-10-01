@@ -10,27 +10,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class TransacaoDebito extends Transacao{
 
-    @ManyToOne
-    private Produtor produtor;
-    @ManyToOne
-    private Empresa empresaGeradora;
-
     public TransacaoDebito() {
     }
 
-    public Produtor getProdutor() {
-        return produtor;
-    }
-
-    public void setProdutor(Produtor produtor) {
-        this.produtor = produtor;
-    }
-
-    public Empresa getEmpresaGeradora() {
-        return empresaGeradora;
-    }
-
-    public void setEmpresaGeradora(Empresa empresaGeradora) {
-        this.empresaGeradora = empresaGeradora;
-    }
 }

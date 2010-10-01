@@ -11,7 +11,10 @@ import br.unoesc.ws.model.TransacaoCredito;
  */
 public class TransacaoCreditoServiceImpl extends GenericServiceImpl<TransacaoCredito>{
 
-    public void incluiTransacao(TransacaoCredito t) throws SalvarException, AlterarException{
+    public void incluiTransacao(TransacaoCredito t)
+            throws SalvarException,
+            AlterarException{
+
         salvarOuAlterar(t);
     }
 }

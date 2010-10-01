@@ -7,12 +7,19 @@ import br.unoesc.ws.model.Produtor;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-/**
+/**classe responsável por prover servicos de persistencia e CRUD da classe
+ * @see Produtor
  *
  * @author vitor
  */
 public class ProdutorServiceImpl extends GenericServiceImpl<Produtor>{
 
+    /**
+     *
+     * @param cpf
+     * @return
+     * @throws ProdutorNotFoundException
+     */
     public Produtor getByCPF(String cpf) throws ProdutorNotFoundException {
         EntityManager em = null;
         Produtor p=null;

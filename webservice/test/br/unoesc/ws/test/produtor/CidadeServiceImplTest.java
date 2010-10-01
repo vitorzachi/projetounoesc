@@ -60,18 +60,18 @@ public class CidadeServiceImplTest {
         cidadeServiceImpl.excluir(cidade.getId());
     }
 
-    @Test
-    public void testGetCidade() {
-         CidadeServiceImpl cidadeServiceImpl=new CidadeServiceImpl();
-        Cidade cidade = new Cidade();
-        cidade.setNomeCidade("Teste Get");
-        try {
-            cidadeServiceImpl.salvar(cidade);
-        } catch (SalvarException ex) {
-            Logger.getLogger(CidadeServiceImplTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        Cidade c = (Cidade) new CidadeServiceImpl().getById(cidade.getId());
-        assertNotNull(c);
-    }
+//    @Test
+//    public void testGetCidade() {
+//         CidadeServiceImpl cidadeServiceImpl=new CidadeServiceImpl();
+//        Cidade cidade = new Cidade();
+//        cidade.setNomeCidade("Teste Get");
+//        try {
+//            cidadeServiceImpl.salvar(cidade);
+//        } catch (SalvarException ex) {
+//            Logger.getLogger(CidadeServiceImplTest.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        Cidade c = (Cidade) new CidadeServiceImpl().getById(cidade.getId());
+//        assertNotNull(c);
+//    }
 }

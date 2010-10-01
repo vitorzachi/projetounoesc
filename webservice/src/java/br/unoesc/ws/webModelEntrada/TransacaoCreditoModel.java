@@ -1,16 +1,19 @@
 package br.unoesc.ws.webModelEntrada;
 
-/**
- *
+/**classe utilizada para entrada de parametros dos metodos de transacao de credito.
+ *recebe as chaves de pesquisa dos parametros contidos na classe de transacao
+ * de credito e mais outras informacoes necessarias para sua validacao
+ * 
  * @author vitor
  */
 public class TransacaoCreditoModel {
 
     private Long codCereal;
     private Long codEmpresa;
-    private String cpfProdutor;
+    private String cpfProdutor, serieNotaFiscal;
     private Long numNotaFiscal;
     private Float qtdComprada;
+    private String senha;
 
     public TransacaoCreditoModel() {
     }
@@ -55,5 +58,20 @@ public class TransacaoCreditoModel {
         this.qtdComprada = qtdComprada;
     }
 
-    
+    public String getSerieNotaFiscal() {
+        return serieNotaFiscal;
+    }
+
+    public void setSerieNotaFiscal(String serieNotaFiscal) {
+        this.serieNotaFiscal = serieNotaFiscal;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
 }
