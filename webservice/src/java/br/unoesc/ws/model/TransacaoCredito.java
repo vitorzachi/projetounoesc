@@ -9,7 +9,7 @@ import javax.persistence.OneToOne;
  * @author vitor
  */
 @Entity
-public class TransacaoCredito extends Transacao {
+public class TransacaoCredito extends TransacaoDebitos {
 
    
     @OneToOne(cascade = CascadeType.ALL)

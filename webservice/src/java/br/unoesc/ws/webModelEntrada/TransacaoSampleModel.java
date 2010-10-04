@@ -6,17 +6,28 @@ package br.unoesc.ws.webModelEntrada;
  * 
  * @author vitor
  */
-public class TransacaoCreditoModel {
+public class TransacaoSampleModel {
 
     private Long codCereal;
     private Long codEmpresa;
     private String cpfProdutor, serieNotaFiscal;
     private Long numNotaFiscal;
-    private Float qtdComprada;
+    private Integer quantidade;
     private String senha;
 
-    public TransacaoCreditoModel() {
+    public TransacaoSampleModel() {
     }
+
+    public TransacaoSampleModel(Long codCereal, Long codEmpresa, String cpfProdutor, String serieNotaFiscal, Long numNotaFiscal, Integer quantidade, String senha) {
+        this.codCereal = codCereal;
+        this.codEmpresa = codEmpresa;
+        this.cpfProdutor = cpfProdutor;
+        setSerieNotaFiscal(serieNotaFiscal);
+        this.numNotaFiscal = numNotaFiscal;
+        this.quantidade = quantidade;
+        this.senha = senha;
+    }
+
 
     public Long getCodCereal() {
         return codCereal;
@@ -50,12 +61,12 @@ public class TransacaoCreditoModel {
         this.numNotaFiscal = numNotaFiscal;
     }
 
-    public Float getQtdComprada() {
-        return qtdComprada;
+    public Integer getQtdComprada() {
+        return quantidade;
     }
 
-    public void setQtdComprada(Float qtdComprada) {
-        this.qtdComprada = qtdComprada;
+    public void setQtdComprada(Integer qtdComprada) {
+        this.quantidade = qtdComprada;
     }
 
     public String getSerieNotaFiscal() {
@@ -63,7 +74,7 @@ public class TransacaoCreditoModel {
     }
 
     public void setSerieNotaFiscal(String serieNotaFiscal) {
-        this.serieNotaFiscal = serieNotaFiscal;
+        this.serieNotaFiscal = serieNotaFiscal.toUpperCase();
     }
 
     public String getSenha() {

@@ -1,8 +1,8 @@
 
 package br.unoesc.ws.serviceModel;
 
-import br.unoesc.ws.exceptions.AlterarException;
 import br.unoesc.ws.exceptions.SalvarException;
+import br.unoesc.ws.model.Boleto;
 import br.unoesc.ws.model.TransacaoCredito;
 
 /**
@@ -11,10 +11,22 @@ import br.unoesc.ws.model.TransacaoCredito;
  */
 public class TransacaoCreditoServiceImpl extends GenericServiceImpl<TransacaoCredito>{
 
-    public void incluiTransacao(TransacaoCredito t)
-            throws SalvarException,
-            AlterarException{
+    @Override
+    public void salvar(TransacaoCredito t)
+            throws SalvarException{
 
-        salvarOuAlterar(t);
+        Boleto b=new Boleto();
+        b.setTransacaoCredito(t);
+        b.setPago(false);
+
+//        b.setValor();
+        
+        salvar(t);
     }
+
+//    private Float getValorBoleto(TransacaoCredito t){
+//        SafraServiceImpl s=new SafraServiceImpl();
+//        Safra safra=s.getSafraCorrente();
+//
+//    }
 }
