@@ -8,21 +8,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author vitor
  */
-@Entity
+@Entity()
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Transacao extends GenericModel {
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"numeroNotaFiscal","serieNotaFiscal","idCereal"})})
+//
+public class TransacaoDebitos extends GenericModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private Long numeroNotaFiscal;
     @Column(length = 2)
     private String serieNotaFiscal;
@@ -32,8 +38,9 @@ public abstract class Transacao extends GenericModel {
     private Empresa empresaGeradora;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataTransacao;
-    private Float quantidade;
+    private Integer quantidade;
     @ManyToOne
+    @JoinColumn(name="idCereal")
     private Cereal cereal;
 
     public Cereal getCereal() {
@@ -76,11 +83,11 @@ public abstract class Transacao extends GenericModel {
         this.id = id;
     }
 
-    public Float getQuantidade() {
+    public Integer getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(Float quantidade) {
+    public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
 

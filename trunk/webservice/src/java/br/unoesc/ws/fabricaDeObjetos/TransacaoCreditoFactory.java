@@ -9,7 +9,7 @@ import br.unoesc.ws.model.TransacaoCredito;
 import br.unoesc.ws.serviceModel.CerealServiceImpl;
 import br.unoesc.ws.serviceModel.EmpresaServiceImpl;
 import br.unoesc.ws.serviceModel.ProdutorServiceImpl;
-import br.unoesc.ws.webModelEntrada.TransacaoCreditoModel;
+import br.unoesc.ws.webModelEntrada.TransacaoSampleModel;
 import java.util.Date;
 
 /** classe que contem os metodos de geracao de objetos
@@ -23,9 +23,9 @@ public class TransacaoCreditoFactory {
      * criar o objeto @see TransacaoCredito propriamente dito, validando os campos
      * e gerando exceptions que serao utilizadas nas mensagens de retorno do WS
      *
-     * @param TransacaoCreditoModel t
+     * @param TransacaoSampleModel t
      */
-    public TransacaoCredito criarTransacaoCredito(TransacaoCreditoModel t)
+    public TransacaoCredito criarTransacaoCredito(TransacaoSampleModel t)
             throws CerealNotFoundException,
             EmpresaNaoAutorizadaException,
             ProdutorNotFoundException,

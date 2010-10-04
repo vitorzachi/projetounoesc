@@ -19,6 +19,7 @@ public class Boleto extends GenericModel{
     private TransacaoCredito transacaoCredito;
     @Column(nullable=false)
     private boolean pago;
+    private Float valor;
 
     public Boleto() {
     }
@@ -48,5 +49,12 @@ public class Boleto extends GenericModel{
         this.id = id;
     }
 
+    public Float getValor() {
+        return valor;
+    }
+
+    public void setValor(Float valor) {
+        this.valor = valor;
+    }
 
 }
