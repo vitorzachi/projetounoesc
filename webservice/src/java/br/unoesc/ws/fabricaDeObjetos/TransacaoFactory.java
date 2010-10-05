@@ -17,15 +17,19 @@ import java.util.Date;
  *
  * @author vitor
  */
-public class TransacaoCreditoFactory {
+public class TransacaoFactory {
 
     /** classe responsavel por receber um objeto com parametros simples e
-     * criar o objeto @see TransacaoCredito propriamente dito, validando os campos
+     * criar o objeto TransacaoDebito propriamente dito, validando os campos
      * e gerando exceptions que serao utilizadas nas mensagens de retorno do WS
+     *
+     * OBS: pode ser usado também para gerar uma TransacaoCredito, pelo
+     * fato de esta ser uma classe filha da classe TransacaoDebito
+     * @see TransacaoCredito
      *
      * @param TransacaoSampleModel t
      */
-    public TransacaoCredito criarTransacaoCredito(TransacaoSampleModel t)
+    public TransacaoCredito criarTransacaoGenerica(TransacaoSampleModel t)
             throws CerealNotFoundException,
             EmpresaNaoAutorizadaException,
             ProdutorNotFoundException,
@@ -33,7 +37,7 @@ public class TransacaoCreditoFactory {
 
         TransacaoCredito tc = new TransacaoCredito();
 
-        Empresa empresa=null;
+        Empresa empresa = null;
         CerealServiceImpl c = new CerealServiceImpl();
         EmpresaServiceImpl e = new EmpresaServiceImpl();
         ProdutorServiceImpl p = new ProdutorServiceImpl();
@@ -42,7 +46,7 @@ public class TransacaoCreditoFactory {
 
         tc.setCereal(c.getCerealById(t.getCodCereal())); //exception ok
 
-        empresa=e.getEmpresaById(t.getCodEmpresa());
+        empresa = e.getEmpresaById(t.getCodEmpresa());
         tc.setEmpresaGeradora(empresa);  //exception ok
 
         tc.setNumeroNotaFiscal(t.getNumNotaFiscal()); //nao precisa exception
@@ -55,7 +59,7 @@ public class TransacaoCreditoFactory {
 
 //--------------[ validando acesso da empresa com senha ]------------------------
         //se senha passada difere da senha cadastrada para a empresa, lanca exception
-        if(!t.getSenha().equals(empresa.getSenha())){
+        if (!t.getSenha().equals(empresa.getSenha())) {
             throw new SenhaIncorretaException();
         }
 //--------------[ retorno ]------------------------

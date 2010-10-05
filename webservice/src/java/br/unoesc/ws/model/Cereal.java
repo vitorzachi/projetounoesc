@@ -21,7 +21,7 @@ public class Cereal extends GenericModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name="nomeCereal",length=30,nullable=false)
+    @Column(length=30,nullable=false,unique=true)
     private String nome;
 
     public Cereal() {

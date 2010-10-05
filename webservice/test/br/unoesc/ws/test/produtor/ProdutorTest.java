@@ -1,8 +1,12 @@
 package br.unoesc.ws.test.produtor;
 
+import br.unoesc.ws.exceptions.CerealNotFoundException;
+import br.unoesc.ws.exceptions.ProdutorNotFoundException;
 import br.unoesc.ws.exceptions.SalvarException;
 import br.unoesc.ws.model.Produtor;
+import br.unoesc.ws.serviceModel.CerealServiceImpl;
 import br.unoesc.ws.serviceModel.ProdutorServiceImpl;
+import br.unoesc.ws.serviceModel.SafraServiceImpl;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -12,7 +16,7 @@ import static org.junit.Assert.*;
  */
 public class ProdutorTest {
 
-    @Test
+//    @Test
     public void insereProdutor() {
         Produtor p = new Produtor();
         p.setNomePessoa("vitor");
@@ -27,10 +31,10 @@ public class ProdutorTest {
         } catch (SalvarException ex) {
             fail(ex.getMessage());
         }
-        
+
     }
 
-    @Test
+//    @Test
     public void getProdutorByCPF() {
         Produtor p = new Produtor();
         p.setNomePessoa("vitor");
@@ -42,13 +46,38 @@ public class ProdutorTest {
         ProdutorServiceImpl pl = new ProdutorServiceImpl();
         try {
             pl.salvar(p);
-            p1=pl.getByCPF("05456216901");
+            p1 = pl.getByCPF("05456216901");
             System.out.println(p1.getNomePessoa());
             assertTrue(true);
             //p.setCidade(null);
         } catch (Exception ex) {
             fail(ex.getMessage());
         }
-        
+
+    }
+
+    @Test
+    public void getSaldoProdutorTeste() {
+        Long saldo=null;
+
+        ProdutorServiceImpl pi = new ProdutorServiceImpl();
+        SafraServiceImpl si=new SafraServiceImpl();
+        CerealServiceImpl ci=new CerealServiceImpl();
+
+        Produtor p = null;
+        try {
+            p = pi.getByCPF("05456216900");
+        } catch (ProdutorNotFoundException ex) {
+            fail(ex.getMessage());
+        }
+
+        try {
+            saldo=pi.getSaldoRoyalties(p, si.getSafraCorrente(ci.getCerealPorNome("soja")));
+        } catch (CerealNotFoundException ex) {
+            fail(ex.getMessage());
+        }
+
+        System.out.println(saldo);
+        assertNotNull(saldo);
     }
 }

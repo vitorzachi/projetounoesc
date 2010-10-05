@@ -4,6 +4,9 @@
  */
 package br.unoesc.ws.test.transacao;
 
+import br.unoesc.ws.exceptions.CerealNotFoundException;
+import br.unoesc.ws.serviceModel.CerealServiceImpl;
+import br.unoesc.ws.serviceModel.EmpresaServiceImpl;
 import br.unoesc.ws.webModelEntrada.TransacaoSampleModel;
 import br.unoesc.ws.webModelRetorno.ObjetoRetorno;
 import br.unoesc.ws.webServiceMethods.TransacaoWS;
@@ -18,7 +21,8 @@ public class TransacaoTest {
 
     @Test
     public void insereTransacaoCredito() {
-        TransacaoSampleModel tm = new TransacaoSampleModel(new Long(2), new Long(2), "11122233344", "1", new Long(2345), 250, "senha");
+
+        TransacaoSampleModel tm = new TransacaoSampleModel(1l, 2l, "05456216900", "1", new Long(2345), 250, "pass");
         TransacaoWS tws = new TransacaoWS();
         ObjetoRetorno o = tws.incluirCredito(tm);
         System.out.println(o.getCodigoRetorno());
