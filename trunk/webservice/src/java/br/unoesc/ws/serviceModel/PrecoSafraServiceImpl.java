@@ -7,7 +7,6 @@ package br.unoesc.ws.serviceModel;
 
 import br.unoesc.ws.model.PrecoSafra;
 import br.unoesc.ws.model.Safra;
-import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -21,7 +20,7 @@ public class PrecoSafraServiceImpl extends GenericServiceImpl<PrecoSafra> {
          EntityManager em = null;
         try {
             em = getEntityManager();
-            Query query = em.createQuery("select p from PrecoSafra p where :safra = p.safra");
+            Query query = em.createQuery("select p from PrecoSafra p where p.safra=:safra");
             query.setParameter("safra",safra);
             return (PrecoSafra)query.getSingleResult();
         } finally {

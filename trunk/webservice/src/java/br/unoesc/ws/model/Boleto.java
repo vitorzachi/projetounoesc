@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 public class Boleto extends GenericModel{
     @Id
     private Long id;
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne()
     private TransacaoCredito transacaoCredito;
     @Column(nullable=false)
     private boolean pago;

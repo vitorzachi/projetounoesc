@@ -6,12 +6,15 @@ import br.unoesc.ws.exceptions.EmpresaNaoAutorizadaException;
 import br.unoesc.ws.exceptions.ProdutorNotFoundException;
 import br.unoesc.ws.exceptions.SalvarException;
 import br.unoesc.ws.exceptions.SenhaIncorretaException;
-import br.unoesc.ws.fabricaDeObjetos.TransacaoCreditoFactory;
+import br.unoesc.ws.fabricaDeObjetos.TransacaoFactory;
 import br.unoesc.ws.model.TransacaoCredito;
+import br.unoesc.ws.model.TransacaoDebito;
 import br.unoesc.ws.serviceModel.TransacaoCreditoServiceImpl;
 import br.unoesc.ws.serviceModel.TransacaoDebitoServiceImpl;
 import br.unoesc.ws.webModelEntrada.TransacaoSampleModel;
 import br.unoesc.ws.webModelRetorno.ObjetoRetorno;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -39,7 +42,7 @@ public class TransacaoWS {
         TransacaoCredito tc=null;
 
         try {
-            tc = new TransacaoCreditoFactory().criarTransacaoCredito(t);
+            tc = new TransacaoFactory().criarTransacaoGenerica(t);
         } catch (CerealNotFoundException ex) {
             retorno=new ObjetoRetorno(CodigosRetorno.CODIGO_CEREAL_NAO_ENCONTRADO, ex.getMessage(),"código de cereal procurado", t.getCodCereal().toString());
             return retorno;
@@ -70,10 +73,10 @@ public class TransacaoWS {
         TransacaoDebitoServiceImpl transacaoService = new TransacaoDebitoServiceImpl();
         ObjetoRetorno retorno;
 
-        TransacaoCredito tc=null;
+        TransacaoDebito tc=null;
 
         try {
-            tc = new TransacaoCreditoFactory().criarTransacaoCredito(t);
+            tc = new TransacaoFactory().criarTransacaoGenerica(t);
         } catch (CerealNotFoundException ex) {
             retorno=new ObjetoRetorno(CodigosRetorno.CODIGO_CEREAL_NAO_ENCONTRADO, ex.getMessage(),"código de cereal procurado", t.getCodCereal().toString());
             return retorno;
@@ -87,7 +90,11 @@ public class TransacaoWS {
             retorno=new ObjetoRetorno(CodigosRetorno.LOGIN_DA_EMPRESA_INCORRETO, ex.getMessage(),"verifique seus os parâmetros de login", "pa55W0rd");
             return retorno;
         }
-
+        try {
+            transacaoService.salvar(tc);
+        } catch (SalvarException ex) {
+//            Logger.getLogger(TransacaoWS.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         return null;
     }

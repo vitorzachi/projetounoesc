@@ -15,5 +15,8 @@ public class CerealNotFoundException extends Exception{
         super("Não existe cereal com esse código");
     }
 
+    public CerealNotFoundException(String mensagem){
+        super(mensagem);
+    }
 
 }
