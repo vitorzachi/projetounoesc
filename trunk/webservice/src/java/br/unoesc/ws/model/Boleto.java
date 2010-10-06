@@ -4,6 +4,8 @@ package br.unoesc.ws.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
@@ -14,8 +16,9 @@ import javax.persistence.OneToOne;
 @Entity
 public class Boleto extends GenericModel{
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    @OneToOne()
+    @OneToOne(cascade=CascadeType.ALL)
     private TransacaoCredito transacaoCredito;
     @Column(nullable=false)
     private boolean pago;

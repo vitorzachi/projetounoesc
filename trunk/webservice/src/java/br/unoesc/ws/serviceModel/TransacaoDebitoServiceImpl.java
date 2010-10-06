@@ -11,9 +11,9 @@ import br.unoesc.ws.model.TransacaoDebito;
 public class TransacaoDebitoServiceImpl extends GenericServiceImpl<TransacaoDebito>{
 
 
-    @Override
-    public void salvar(TransacaoDebito t)throws SalvarException{
-        ProdutorServiceImpl produtorService=new ProdutorServiceImpl();
-
-    }
+//    @Override
+//    public void salvar(TransacaoDebito t)throws SalvarException{
+//
+//
+//    }
 }

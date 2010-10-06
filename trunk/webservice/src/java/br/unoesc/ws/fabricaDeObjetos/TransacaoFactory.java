@@ -5,7 +5,9 @@ import br.unoesc.ws.exceptions.EmpresaNaoAutorizadaException;
 import br.unoesc.ws.exceptions.ProdutorNotFoundException;
 import br.unoesc.ws.exceptions.SenhaIncorretaException;
 import br.unoesc.ws.model.Empresa;
+import br.unoesc.ws.model.Transacao;
 import br.unoesc.ws.model.TransacaoCredito;
+import br.unoesc.ws.model.TransacaoDebito;
 import br.unoesc.ws.serviceModel.CerealServiceImpl;
 import br.unoesc.ws.serviceModel.EmpresaServiceImpl;
 import br.unoesc.ws.serviceModel.ProdutorServiceImpl;
@@ -29,13 +31,13 @@ public class TransacaoFactory {
      *
      * @param TransacaoSampleModel t
      */
-    public TransacaoCredito criarTransacaoGenerica(TransacaoSampleModel t)
+    public Transacao criarTransacaoGenerica(TransacaoSampleModel t)
             throws CerealNotFoundException,
             EmpresaNaoAutorizadaException,
             ProdutorNotFoundException,
             SenhaIncorretaException {
 
-        TransacaoCredito tc = new TransacaoCredito();
+        Transacao tc = new TransacaoDebito();
 
         Empresa empresa = null;
         CerealServiceImpl c = new CerealServiceImpl();
@@ -63,6 +65,19 @@ public class TransacaoFactory {
             throw new SenhaIncorretaException();
         }
 //--------------[ retorno ]------------------------
+        return tc;
+    }
+
+    
+    public TransacaoCredito g(TransacaoDebito t){
+        TransacaoCredito tc=new TransacaoCredito();
+        tc.setCereal(t.getCereal());
+        tc.setDataTransacao(t.getDataTransacao());
+        tc.setEmpresaGeradora(t.getEmpresaGeradora());
+        tc.setNumeroNotaFiscal(t.getNumeroNotaFiscal());
+        tc.setProdutor(t.getProdutor());
+        tc.setQuantidade(t.getQuantidade());
+        tc.setSerieNotaFiscal(t.getSerieNotaFiscal());
         return tc;
     }
 }

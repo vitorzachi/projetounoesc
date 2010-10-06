@@ -19,12 +19,26 @@ import static org.junit.Assert.*;
  */
 public class TransacaoTest {
 
-    @Test
+//    @Test
     public void insereTransacaoCredito() {
 
         TransacaoSampleModel tm = new TransacaoSampleModel(1l, 2l, "05456216900", "1", new Long(2345), 250, "pass");
         TransacaoWS tws = new TransacaoWS();
         ObjetoRetorno o = tws.incluirCredito(tm);
+        System.out.println(o.getCodigoRetorno());
+        System.out.println(o.getMensagemRetorno());
+
+        System.out.println(o.getDescricaoCodRetornoAdicional());
+        System.out.println(o.getCodigoRetornoAdicional());
+        assertTrue(true);
+    }
+
+    @Test
+    public void insereTransacaoDebito() {
+
+        TransacaoSampleModel tm = new TransacaoSampleModel(1l, 2l, "05456216900", "1", new Long(2351), 250, "pass");
+        TransacaoWS tws = new TransacaoWS();
+        ObjetoRetorno o = tws.incluirDebito(tm);
         System.out.println(o.getCodigoRetorno());
         System.out.println(o.getMensagemRetorno());
 
