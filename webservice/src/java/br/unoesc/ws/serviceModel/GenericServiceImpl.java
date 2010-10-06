@@ -1,4 +1,3 @@
-
 package br.unoesc.ws.serviceModel;
 
 import br.unoesc.ws.exceptions.AlterarException;
@@ -64,7 +63,7 @@ public class GenericServiceImpl<ModelClass extends GenericModel> {
             em.getTransaction().begin(); //inicio uma transação com o banco
             objeto = em.merge(objeto);//faço alteracao nos dados do objeto
             em.getTransaction().commit();//fecho a transação com um commit
-        }catch(Exception e){
+        } catch (Exception e) {
             throw new AlterarException(e.getMessage());
         } finally {
             if (em != null) {
@@ -88,14 +87,16 @@ public class GenericServiceImpl<ModelClass extends GenericModel> {
         }
     }
 
-    protected  ModelClass getById(Long codigo) {
+    protected ModelClass getById(Long codigo) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             return em.find(this.modelClazz, codigo);
-            
+
         } finally {
-            em.close();
+            if (em != null) {
+                em.close();
+            }
         }
     }
 
@@ -110,10 +111,10 @@ public class GenericServiceImpl<ModelClass extends GenericModel> {
         }
     }
 
-    public void salvarOuAlterar(ModelClass modelClass) throws SalvarException, AlterarException{
-        if(modelClass.getId()!=null){
+    public void salvarOuAlterar(ModelClass modelClass) throws SalvarException, AlterarException {
+        if (modelClass.getId() != null) {
             alterar(modelClass);
-        }else{
+        } else {
             salvar(modelClass);
         }
     }

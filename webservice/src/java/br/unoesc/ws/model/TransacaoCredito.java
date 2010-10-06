@@ -9,10 +9,9 @@ import javax.persistence.OneToOne;
  * @author vitor
  */
 @Entity
-public class TransacaoCredito extends TransacaoDebito {
+public class TransacaoCredito extends Transacao {
 
-   
-    @OneToOne()
+    @OneToOne(cascade = CascadeType.ALL)
     private Boleto boletoGerado;
 
     public TransacaoCredito() {
@@ -25,6 +24,4 @@ public class TransacaoCredito extends TransacaoDebito {
     public void setBoletoGerado(Boleto boletoGerado) {
         this.boletoGerado = boletoGerado;
     }
-
-    
 }
