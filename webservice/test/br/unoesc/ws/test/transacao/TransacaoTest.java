@@ -36,7 +36,7 @@ public class TransacaoTest {
     @Test
     public void insereTransacaoDebito() {
 
-        TransacaoSampleModel tm = new TransacaoSampleModel(1l, 2l, "05456216900", "1", new Long(2351), 250, "pass");
+        TransacaoSampleModel tm = new TransacaoSampleModel(1l, 2l, "05456216900", "1", new Long(2358), 100, "pass");
         TransacaoWS tws = new TransacaoWS();
         ObjetoRetorno o = tws.incluirDebito(tm);
         System.out.println(o.getCodigoRetorno());
