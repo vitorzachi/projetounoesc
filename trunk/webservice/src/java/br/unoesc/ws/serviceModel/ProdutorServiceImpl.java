@@ -55,23 +55,23 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor> {
             EntityTransaction ent=em.getTransaction();
             ent.begin();
             Query qCredito = em.createQuery("select Sum(t.quantidade) " +
-                    "from TransacaoCredito t");// where ((t.produtor=:p) and " +
-//                    "(t.dataTransacao between :ini and :fim) and (t.cereal=:c) and (t.boletoGerado.pago=true))");
+                    "from TransacaoCredito t where ((t.produtor=:p) and " +
+                    "(t.dataTransacao between :ini and :fim) and (t.cereal=:c) and (t.boletoGerado.pago=true))");
 
-//            qCredito.setParameter("p", p);
-//            qCredito.setParameter("ini", ini);
-//            qCredito.setParameter("fim", fim);
-//            qCredito.setParameter("c", c);
+            qCredito.setParameter("p", p);
+            qCredito.setParameter("ini", ini);
+            qCredito.setParameter("fim", fim);
+            qCredito.setParameter("c", c);
             creditos = (Long) qCredito.getSingleResult();
 //            [-------------- --------------]
             Query qDebito = em.createQuery("select Sum(t.quantidade) " +
-                    "from TransacaoDebito t");// where ((t.produtor=:p) and " +
-//                    "(t.dataTransacao between :ini and :fim) and (t.cereal=:c))");
+                    "from TransacaoDebito t where ((t.produtor=:p) and " +
+                    "(t.dataTransacao between :ini and :fim) and (t.cereal=:c))");
 
-//            qDebito.setParameter("p", p);
-//            qDebito.setParameter("ini", ini);
-//            qDebito.setParameter("fim", fim);
-//            qDebito.setParameter("c", c);
+            qDebito.setParameter("p", p);
+            qDebito.setParameter("ini", ini);
+            qDebito.setParameter("fim", fim);
+            qDebito.setParameter("c", c);
             debitos = (Long) qDebito.getSingleResult();
             ent.commit();
         } finally {
@@ -86,8 +86,6 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor> {
             creditos=new Long(0);
         }
 
-        System.out.println(creditos);
-        System.out.println(debitos);
         return (creditos * s.getMultiplicadorCredito()) - debitos;
     }
 }

@@ -1,6 +1,4 @@
 
-import br.unoesc.ws.exceptions.CerealNotFoundException;
-import br.unoesc.ws.model.PrecoSafra;
 import br.unoesc.ws.test.cereal.CerealTeste;
 import br.unoesc.ws.test.empresa.EmpresaTeste;
 import br.unoesc.ws.test.entitymanager.EntityManagerTest;
@@ -8,9 +6,6 @@ import br.unoesc.ws.test.precoSafra.PrecoSafraTest;
 import br.unoesc.ws.test.produtor.ProdutorTest;
 import br.unoesc.ws.test.safra.SafraTest;
 import br.unoesc.ws.test.transacao.TransacaoTest;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.junit.Test;
 
 /**
  *

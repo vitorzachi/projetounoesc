@@ -31,7 +31,7 @@ public class TransacaoFactory {
      *
      * @param TransacaoSampleModel t
      */
-    public Transacao criarTransacaoGenerica(TransacaoSampleModel t)
+    public Transacao criarTransacaoDebito(TransacaoSampleModel t)
             throws CerealNotFoundException,
             EmpresaNaoAutorizadaException,
             ProdutorNotFoundException,
@@ -69,7 +69,7 @@ public class TransacaoFactory {
     }
 
     
-    public TransacaoCredito g(TransacaoDebito t){
+    public TransacaoCredito criarTransacaoCredito(TransacaoDebito t){
         TransacaoCredito tc=new TransacaoCredito();
         tc.setCereal(t.getCereal());
         tc.setDataTransacao(t.getDataTransacao());

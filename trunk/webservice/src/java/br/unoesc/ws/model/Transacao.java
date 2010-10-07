@@ -36,7 +36,7 @@ public abstract class Transacao extends GenericModel {
     private Produtor produtor;
     @ManyToOne
     private Empresa empresaGeradora;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dataTransacao;
     private Integer quantidade;
     @ManyToOne

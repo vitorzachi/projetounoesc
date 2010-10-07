@@ -44,7 +44,7 @@ public class TransacaoWS {
         TransacaoCredito tc = null;
 
         try {
-            tc =  new TransacaoFactory().g((TransacaoDebito) new TransacaoFactory().criarTransacaoGenerica(t));
+            tc =  new TransacaoFactory().criarTransacaoCredito((TransacaoDebito) new TransacaoFactory().criarTransacaoDebito(t));
         } catch (CerealNotFoundException ex) {
             retorno = new ObjetoRetorno(CodigosRetorno.CODIGO_CEREAL_NAO_ENCONTRADO, ex.getMessage(), "código de cereal procurado", t.getCodCereal().toString());
             return retorno;
@@ -81,7 +81,7 @@ public class TransacaoWS {
         TransacaoDebito tc = null;
 
         try {
-            tc = (TransacaoDebito) new TransacaoFactory().criarTransacaoGenerica(t);
+            tc = (TransacaoDebito) new TransacaoFactory().criarTransacaoDebito(t);
         } catch (CerealNotFoundException ex) {
             retorno = new ObjetoRetorno(CodigosRetorno.CODIGO_CEREAL_NAO_ENCONTRADO, ex.getMessage(), "código de cereal procurado", t.getCodCereal().toString());
             return retorno;
