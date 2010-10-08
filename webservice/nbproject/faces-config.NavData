@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="jsfs/produtor/Edit.jsp" x="1150" y="150" zoom="true"/>
+        <Node id="/media/Documentos_2/MATERIAIS_FACULDADE/MATERIAIS ANO 2010-FACULDADE/materiais 6 periodo/trabalho integrado(eng.soft,BD II,metodologia,ling.Programacao)/WS/webservice/web/jsfs/produtor/New.jsp" x="400" y="300" zoom="true"/>
+        <Node id="jsfs/produtor/Detail.jsp" x="650" y="300" zoom="true"/>
+        <Node id="/media/Documentos_2/MATERIAIS_FACULDADE/MATERIAIS ANO 2010-FACULDADE/materiais 6 periodo/trabalho integrado(eng.soft,BD II,metodologia,ling.Programacao)/WS/webservice/web/jsfs/produtor/Detail.jsp" x="150" y="600" zoom="true"/>
+        <Node id="/media/Documentos_2/MATERIAIS_FACULDADE/MATERIAIS ANO 2010-FACULDADE/materiais 6 periodo/trabalho integrado(eng.soft,BD II,metodologia,ling.Programacao)/WS/webservice/web/jsfs/produtor/List.jsp" x="150" y="450" zoom="true"/>
+        <Node id="jsfs/produtor/List.jsp" x="900" y="150" zoom="true"/>
+        <Node id="welcomeJSF.jsp" x="400" y="450" zoom="true"/>
+        <Node id="jsfs/produtor/New.jsp" x="150" y="300" zoom="true"/>
+        <Node id="/media/Documentos_2/MATERIAIS_FACULDADE/MATERIAIS ANO 2010-FACULDADE/materiais 6 periodo/trabalho integrado(eng.soft,BD II,metodologia,ling.Programacao)/WS/webservice/web/welcomeJSF.jsp" x="900" y="300" zoom="true"/>
+        <Node id="/media/Documentos_2/MATERIAIS_FACULDADE/MATERIAIS ANO 2010-FACULDADE/materiais 6 periodo/trabalho integrado(eng.soft,BD II,metodologia,ling.Programacao)/WS/webservice/web/jsfs/produtor/Edit.jsp" x="400" y="150" zoom="true"/>
+        <Node id="/media/Documentos_2/MATERIAIS_FACULDADE/MATERIAIS ANO 2010-FACULDADE/materiais 6 periodo/trabalho integrado(eng.soft,BD II,metodologia,ling.Programacao)/WS/webservice/web/pgnotfound.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="/media/Documentos_2/MATERIAIS_FACULDADE/MATERIAIS ANO 2010-FACULDADE/materiais 6 periodo/trabalho integrado(eng.soft,BD II,metodologia,ling.Programacao)/WS/webservice/web/index.jsp" x="650" y="150" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

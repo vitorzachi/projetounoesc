@@ -8,8 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import org.apache.commons.lang.builder.CompareToBuilder;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -21,6 +23,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * @author vitor
  */
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"nomeSafra","estadoPlantio_id"})})
 public class Safra extends GenericModel {
 
     @Id
@@ -36,6 +39,8 @@ public class Safra extends GenericModel {
     private Date fimSafra;
     @ManyToOne
     private Cereal cereal;
+    @ManyToOne
+    private Estado estadoPlantio;
     @Column(nullable = false)
     private Long multiplicadorCredito;
 
@@ -70,9 +75,9 @@ public class Safra extends GenericModel {
         return nomeSafra;
     }
 
-    public void setNomeSafra(String nome) {
-        this.nomeSafra = nome;
-    }
+//    public void setNomeSafra(String nome) {
+//        this.nomeSafra = nome;
+//    }
 
     public void setNomeSafra() {
         this.nomeSafra = new SimpleDateFormat("yyyy").format(inicioSafra) + "/" + new SimpleDateFormat("yyyy").format(fimSafra);
@@ -89,6 +94,15 @@ public class Safra extends GenericModel {
     public Long getMultiplicadorCredito() {
         return multiplicadorCredito;
     }
+
+    public Estado getEstadoPlantio() {
+        return estadoPlantio;
+    }
+
+    public void setEstadoPlantio(Estado estadoPlantio) {
+        this.estadoPlantio = estadoPlantio;
+    }
+
 
     public void setMultiplicadorCredito(Long multiplicadorCredito) {
         this.multiplicadorCredito = multiplicadorCredito;
@@ -110,7 +124,7 @@ public class Safra extends GenericModel {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("Nome", this.getNomeSafra()).toString();
+        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(this.getNomeSafra()).toString();
     }
 
     public int compareTo(Safra o) {

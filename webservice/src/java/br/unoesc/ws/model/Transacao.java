@@ -22,7 +22,7 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"numeroNotaFiscal","serieNotaFiscal","idCereal","empresaGeradora_id"})})
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"numeroNotaFiscal","serieNotaFiscal","idSafra","empresaGeradora_id"})})
 public abstract class Transacao extends GenericModel {
 
     @Id
@@ -40,15 +40,15 @@ public abstract class Transacao extends GenericModel {
     private Date dataTransacao;
     private Integer quantidade;
     @ManyToOne
-    @JoinColumn(name="idCereal")
-    private Cereal cereal;
+    @JoinColumn(name="idSafra")
+    private Safra safra;
 
-    public Cereal getCereal() {
-        return cereal;
+    public Safra getSafra() {
+        return safra;
     }
 
-    public void setCereal(Cereal cereal) {
-        this.cereal = cereal;
+    public void setSafra(Safra safra) {
+        this.safra = safra;
     }
 
     public Long getNumeroNotaFiscal() {
