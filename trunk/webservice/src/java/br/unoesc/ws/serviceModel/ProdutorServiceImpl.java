@@ -4,7 +4,9 @@ import br.unoesc.ws.exceptions.ProdutorNotFoundException;
 import br.unoesc.ws.model.Cereal;
 import br.unoesc.ws.model.Produtor;
 import br.unoesc.ws.model.Safra;
+import br.unoesc.ws.model.TransacaoCredito;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
@@ -42,19 +44,22 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor> {
     }
 
     public Long getSaldoRoyalties(Produtor p, Safra s) {
-        Long creditos = new Long(0);
-        Long debitos = new Long(0);
+        return getCreditosRoyalties(p, s) - getDebitosRoyalties(p, s);
+    }
 
-        Date ini=s.getInicioSafra();
-        Date fim=s.getFimSafra();
-        Cereal c=s.getCereal();
-        
+    public Long getCreditosRoyalties(Produtor p, Safra s) {
+        Long credito = new Long(0);
+        List<TransacaoCredito> listaTransacoes;
+        Date ini = s.getInicioSafra();
+        Date fim = s.getFimSafra();
+        Cereal c = s.getCereal();
+
         EntityManager em = null;
         try {
             em = getEntityManager();
-            EntityTransaction ent=em.getTransaction();
+            EntityTransaction ent = em.getTransaction();
             ent.begin();
-            Query qCredito = em.createQuery("select Sum(t.quantidade) " +
+            Query qCredito = em.createQuery("select t " +
                     "from TransacaoCredito t where ((t.produtor=:p) and " +
                     "(t.dataTransacao between :ini and :fim) and (t.cereal=:c) and (t.boletoGerado.pago=true))");
 
@@ -62,8 +67,34 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor> {
             qCredito.setParameter("ini", ini);
             qCredito.setParameter("fim", fim);
             qCredito.setParameter("c", c);
-            creditos = (Long) qCredito.getSingleResult();
-//            [-------------- --------------]
+            listaTransacoes =  qCredito.getResultList();
+        } finally {
+            em.close();
+        }
+
+        if (credito == null) {
+            credito = new Long(0);
+        }
+
+        for(TransacaoCredito tr:listaTransacoes){
+            credito+=(tr.getQuantidade()*tr.getSafra().getMultiplicadorCredito());
+        }
+
+        return credito;
+    }
+
+    public Long getDebitosRoyalties(Produtor p,Safra s){
+        Long debitos=new Long(0);
+        Date ini = s.getInicioSafra();
+        Date fim = s.getFimSafra();
+        Cereal c = s.getCereal();
+
+        EntityManager em = null;
+        try {
+            em = getEntityManager();
+            EntityTransaction ent = em.getTransaction();
+            ent.begin();
+
             Query qDebito = em.createQuery("select Sum(t.quantidade) " +
                     "from TransacaoDebito t where ((t.produtor=:p) and " +
                     "(t.dataTransacao between :ini and :fim) and (t.cereal=:c))");
@@ -77,15 +108,10 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor> {
         } finally {
             em.close();
         }
-        
-        if(debitos==null){
-            debitos=new Long(0);
-        }
 
-        if(creditos==null){
-            creditos=new Long(0);
+        if (debitos == null) {
+            debitos = new Long(0);
         }
-
-        return (creditos * s.getMultiplicadorCredito()) - debitos;
+        return debitos;
     }
 }

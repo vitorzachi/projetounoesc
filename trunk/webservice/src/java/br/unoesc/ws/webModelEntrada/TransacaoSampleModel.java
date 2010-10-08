@@ -13,12 +13,13 @@ public class TransacaoSampleModel {
     private String cpfProdutor, serieNotaFiscal;
     private Long numNotaFiscal;
     private Integer quantidade;
+    private Long idEstadoPlantio;
     private String senha;
 
     public TransacaoSampleModel() {
     }
 
-    public TransacaoSampleModel(Long codCereal, Long codEmpresa, String cpfProdutor, String serieNotaFiscal, Long numNotaFiscal, Integer quantidade, String senha) {
+    public TransacaoSampleModel(Long codCereal, Long codEmpresa, String cpfProdutor, String serieNotaFiscal, Long numNotaFiscal, Integer quantidade, Long idEstadoPlantio, String senha) {
         this.codCereal = codCereal;
         this.codEmpresa = codEmpresa;
         this.cpfProdutor = cpfProdutor;
@@ -84,5 +85,14 @@ public class TransacaoSampleModel {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public Long getIdEstadoPlantio() {
+        return idEstadoPlantio;
+    }
+
+    public void setIdEstadoPlantio(Long idEstadoPlantio) {
+        this.idEstadoPlantio = idEstadoPlantio;
+    }
+    
 
 }

@@ -51,7 +51,7 @@ public abstract class Pessoa extends GenericModel {
     }
 
     public void setEndereco(String endereco) {
-        this.endereco = endereco;
+        this.endereco = endereco.toUpperCase();
     }
 
     public Long getId() {
@@ -67,7 +67,7 @@ public abstract class Pessoa extends GenericModel {
     }
 
     public void setNomePessoa(String nomePessoa) {
-        this.nomePessoa = nomePessoa;
+        this.nomePessoa = nomePessoa.toUpperCase();
     }
  @Override
     public boolean equals(Object obj) {
@@ -85,7 +85,7 @@ public abstract class Pessoa extends GenericModel {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("Nome", this.getNomePessoa()).toString();
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append(this.getNomePessoa()).toString();
     }
 
     public int compareTo(Pessoa o) {

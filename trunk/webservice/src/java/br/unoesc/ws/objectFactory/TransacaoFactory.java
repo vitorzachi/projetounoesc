@@ -1,4 +1,4 @@
-package br.unoesc.ws.fabricaDeObjetos;
+package br.unoesc.ws.objectFactory;
 
 import br.unoesc.ws.exceptions.CerealNotFoundException;
 import br.unoesc.ws.exceptions.EmpresaNaoAutorizadaException;
@@ -10,7 +10,9 @@ import br.unoesc.ws.model.TransacaoCredito;
 import br.unoesc.ws.model.TransacaoDebito;
 import br.unoesc.ws.serviceModel.CerealServiceImpl;
 import br.unoesc.ws.serviceModel.EmpresaServiceImpl;
+import br.unoesc.ws.serviceModel.EstadoServiceImpl;
 import br.unoesc.ws.serviceModel.ProdutorServiceImpl;
+import br.unoesc.ws.serviceModel.SafraServiceImpl;
 import br.unoesc.ws.webModelEntrada.TransacaoSampleModel;
 import java.util.Date;
 
@@ -40,13 +42,16 @@ public class TransacaoFactory {
         Transacao tc = new TransacaoDebito();
 
         Empresa empresa = null;
+        SafraServiceImpl s=new SafraServiceImpl();
         CerealServiceImpl c = new CerealServiceImpl();
         EmpresaServiceImpl e = new EmpresaServiceImpl();
         ProdutorServiceImpl p = new ProdutorServiceImpl();
+        EstadoServiceImpl es=new EstadoServiceImpl();
 //--------------[ setando os parametros ]------------------------
         tc.setDataTransacao(new Date());
 
-        tc.setCereal(c.getCerealById(t.getCodCereal())); //exception ok
+        tc.setSafra(s.getSafraCorrente(c.getCerealById(t.getCodCereal()),es.getById(t.getIdEstadoPlantio())));
+//        tc.setCereal(); //exception ok
 
         empresa = e.getEmpresaById(t.getCodEmpresa());
         tc.setEmpresaGeradora(empresa);  //exception ok
@@ -71,7 +76,7 @@ public class TransacaoFactory {
     
     public TransacaoCredito criarTransacaoCredito(TransacaoDebito t){
         TransacaoCredito tc=new TransacaoCredito();
-        tc.setCereal(t.getCereal());
+        tc.setSafra(t.getSafra());
         tc.setDataTransacao(t.getDataTransacao());
         tc.setEmpresaGeradora(t.getEmpresaGeradora());
         tc.setNumeroNotaFiscal(t.getNumeroNotaFiscal());
