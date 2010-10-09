@@ -5,6 +5,7 @@ import br.unoesc.ws.exceptions.ProdutorNotFoundException;
 import br.unoesc.ws.exceptions.SalvarException;
 import br.unoesc.ws.model.Produtor;
 import br.unoesc.ws.serviceModel.CerealServiceImpl;
+import br.unoesc.ws.serviceModel.EstadoServiceImpl;
 import br.unoesc.ws.serviceModel.ProdutorServiceImpl;
 import br.unoesc.ws.serviceModel.SafraServiceImpl;
 import org.junit.Test;
@@ -63,6 +64,7 @@ public class ProdutorTest {
         ProdutorServiceImpl pi = new ProdutorServiceImpl();
         SafraServiceImpl si=new SafraServiceImpl();
         CerealServiceImpl ci=new CerealServiceImpl();
+        EstadoServiceImpl e=new EstadoServiceImpl();
 
         Produtor p = null;
         try {
@@ -72,7 +74,7 @@ public class ProdutorTest {
         }
 
         try {
-            saldo=pi.getSaldoRoyalties(p, si.getSafraCorrente(ci.getCerealPorNome("soja")));
+            saldo=pi.getSaldoRoyalties(p, si.getSafraCorrente(ci.getCerealPorNome("soja"),e.getById(1l)));
         } catch (CerealNotFoundException ex) {
             fail(ex.getMessage());
         }

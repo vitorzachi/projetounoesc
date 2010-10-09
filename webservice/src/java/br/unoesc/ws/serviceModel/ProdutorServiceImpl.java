@@ -50,9 +50,7 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor> {
     public Long getCreditosRoyalties(Produtor p, Safra s) {
         Long credito = new Long(0);
         List<TransacaoCredito> listaTransacoes;
-        Date ini = s.getInicioSafra();
-        Date fim = s.getFimSafra();
-        Cereal c = s.getCereal();
+       
 
         EntityManager em = null;
         try {
@@ -61,12 +59,10 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor> {
             ent.begin();
             Query qCredito = em.createQuery("select t " +
                     "from TransacaoCredito t where ((t.produtor=:p) and " +
-                    "(t.dataTransacao between :ini and :fim) and (t.cereal=:c) and (t.boletoGerado.pago=true))");
+                    "(t.safra=:s) and (t.boletoGerado.pago=true))");
 
             qCredito.setParameter("p", p);
-            qCredito.setParameter("ini", ini);
-            qCredito.setParameter("fim", fim);
-            qCredito.setParameter("c", c);
+            qCredito.setParameter("s", s);
             listaTransacoes =  qCredito.getResultList();
         } finally {
             em.close();
@@ -85,10 +81,7 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor> {
 
     public Long getDebitosRoyalties(Produtor p,Safra s){
         Long debitos=new Long(0);
-        Date ini = s.getInicioSafra();
-        Date fim = s.getFimSafra();
-        Cereal c = s.getCereal();
-
+       
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -97,12 +90,10 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor> {
 
             Query qDebito = em.createQuery("select Sum(t.quantidade) " +
                     "from TransacaoDebito t where ((t.produtor=:p) and " +
-                    "(t.dataTransacao between :ini and :fim) and (t.cereal=:c))");
+                    "(t.safra=:s))");
 
             qDebito.setParameter("p", p);
-            qDebito.setParameter("ini", ini);
-            qDebito.setParameter("fim", fim);
-            qDebito.setParameter("c", c);
+            qDebito.setParameter("s", s);
             debitos = (Long) qDebito.getSingleResult();
             ent.commit();
         } finally {

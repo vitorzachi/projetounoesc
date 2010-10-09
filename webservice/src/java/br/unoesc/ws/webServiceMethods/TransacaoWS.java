@@ -19,7 +19,7 @@ import br.unoesc.ws.serviceModel.SafraServiceImpl;
 import br.unoesc.ws.serviceModel.TransacaoCreditoServiceImpl;
 import br.unoesc.ws.serviceModel.TransacaoDebitoServiceImpl;
 import br.unoesc.ws.webModelEntrada.ProdutorSampleModel;
-import br.unoesc.ws.webModelEntrada.TransacaoSampleModel;
+import br.unoesc.ws.webModelEntrada.IncluirTransacaoSampleModel;
 import br.unoesc.ws.webModelRetorno.ObjetoRetorno;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -40,7 +40,7 @@ public class TransacaoWS {
      *@return  @see ObjetoRetorno
      */
     @WebMethod
-    public ObjetoRetorno incluirCredito(@WebParam(name = "transacaoCredito") TransacaoSampleModel t) {
+    public ObjetoRetorno incluirCredito(@WebParam(name = "transacaoCredito") IncluirTransacaoSampleModel t) {
 
         TransacaoCreditoServiceImpl transacaoService = new TransacaoCreditoServiceImpl();
         ObjetoRetorno retorno;
@@ -75,10 +75,9 @@ public class TransacaoWS {
     }
 
     @WebMethod
-    public ObjetoRetorno incluirDebito(@WebParam(name = "transacaoDebito") TransacaoSampleModel t) {
+    public ObjetoRetorno incluirDebito(@WebParam(name = "transacaoDebito") IncluirTransacaoSampleModel t) {
         TransacaoDebitoServiceImpl transacaoService = new TransacaoDebitoServiceImpl();
         ProdutorServiceImpl produtorService = new ProdutorServiceImpl();
-        SafraServiceImpl safraService = new SafraServiceImpl();
 
         ObjetoRetorno retorno;
 
@@ -140,5 +139,10 @@ public class TransacaoWS {
             retorno = new ObjetoRetorno(CodigosRetorno.ERRO_AO_SALVAR, ex.getMessage(), "houve um erro ao salvar", null);
             return retorno;
         }
+    }
+
+    public ObjetoRetorno excluiTransacaoDebito(){
+
+        return null;
     }
 }

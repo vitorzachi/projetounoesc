@@ -2,7 +2,6 @@
 package br.unoesc.ws.serviceModel;
 
 import br.unoesc.ws.model.Estado;
-import br.unoesc.ws.model.GenericModel;
 
 /**
  *
@@ -10,7 +9,8 @@ import br.unoesc.ws.model.GenericModel;
  */
 public class EstadoServiceImpl extends GenericServiceImpl<Estado> {
 
-    public Estado getById(Long id){
-        return super.getById(id);
+    @Override
+    public Estado getById(Long codigo){
+        return super.getById(codigo);
     }
 }

@@ -2,6 +2,7 @@
 import br.unoesc.ws.test.cereal.CerealTeste;
 import br.unoesc.ws.test.empresa.EmpresaTeste;
 import br.unoesc.ws.test.entitymanager.EntityManagerTest;
+import br.unoesc.ws.test.estado.EstadoTeste;
 import br.unoesc.ws.test.precoSafra.PrecoSafraTest;
 import br.unoesc.ws.test.produtor.ProdutorTest;
 import br.unoesc.ws.test.safra.SafraTest;
@@ -17,9 +18,13 @@ public class RunTests {
 //    [-------- inicio da bateria de testes em ordem de necessidade de execucao --------]
         EntityManagerTest et = new EntityManagerTest();
         et.getEntityManagerTest();
-        et.getQueryTest();
+//        et.getQueryTest();
 
 //        -----------------------------
+        EstadoTeste e=new EstadoTeste();
+        e.insereEstadoTeste();
+
+
         CerealTeste ct = new CerealTeste();
         ct.insereCereal();
         ct.getCerealPorNomeTeste();

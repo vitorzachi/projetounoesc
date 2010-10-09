@@ -4,6 +4,7 @@ import br.unoesc.ws.exceptions.CerealNotFoundException;
 import br.unoesc.ws.exceptions.SalvarException;
 import br.unoesc.ws.model.Safra;
 import br.unoesc.ws.serviceModel.CerealServiceImpl;
+import br.unoesc.ws.serviceModel.EstadoServiceImpl;
 import br.unoesc.ws.serviceModel.SafraServiceImpl;
 import java.util.Date;
 import java.util.logging.Level;
@@ -22,12 +23,14 @@ public class SafraTest {
         Safra s = new Safra();
         SafraServiceImpl si = new SafraServiceImpl();
         CerealServiceImpl c = new CerealServiceImpl();
+        EstadoServiceImpl e=new EstadoServiceImpl();
 
 
         try {
             s.setFimSafra(new Date());
             s.setInicioSafra(new Date());
             s.setCereal(c.getCerealPorNome("soja"));
+            s.setEstadoPlantio(e.getById(1l));
             s.setMultiplicadorCredito(new Long(70));
             s.setNomeSafra();
             si.salvar(s);
@@ -65,9 +68,10 @@ public class SafraTest {
     public void getSafraTest(){
         Safra s=null;
         CerealServiceImpl c = new CerealServiceImpl();
+        EstadoServiceImpl e=new EstadoServiceImpl();
         SafraServiceImpl si=new SafraServiceImpl();
         try {
-            s = si.getSafraCorrente(c.getCerealPorNome("soja"));
+            s = si.getSafraCorrente(c.getCerealPorNome("soja"),e.getById(1l));
         } catch (CerealNotFoundException ex) {
             Logger.getLogger(SafraTest.class.getName()).log(Level.SEVERE, null, ex);
         }
