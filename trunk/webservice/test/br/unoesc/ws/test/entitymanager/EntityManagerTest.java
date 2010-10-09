@@ -28,19 +28,19 @@ public class EntityManagerTest {
         assertNotNull(em);
     }
 
-    @Test
-    public void getQueryTest() {
-        EntityManagerFactory emf = null;
-        emf = Persistence.createEntityManagerFactory("webserviceUnit");
-        EntityManager em = emf.createEntityManager();
-
-        Date i=new Date();
-        Date j=new Date();
-        Query q = em.createQuery("select Sum(t.quantidade) " +
-                "from TransacaoCredito t where ((t.produtor=:p) and " +
-                "(t.cereal=:c)) and (t.dataTransacao between :i and :j))");
-    
-        assertNotNull(q);
-    }
+//    @Test
+//    public void getQueryTest() {
+//        EntityManagerFactory emf = null;
+//        emf = Persistence.createEntityManagerFactory("webserviceUnit");
+//        EntityManager em = emf.createEntityManager();
+//
+//        Date i=new Date();
+//        Date j=new Date();
+//        Query q = em.createQuery("select Sum(t.quantidade) " +
+//                "from TransacaoCredito t where ((t.produtor=:p) and " +
+//                "(t.cereal=:c)) and (t.dataTransacao between :i and :j))");
+//
+//        assertNotNull(q);
+//    }
 
 }

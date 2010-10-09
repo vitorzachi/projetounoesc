@@ -13,7 +13,7 @@ import br.unoesc.ws.serviceModel.EmpresaServiceImpl;
 import br.unoesc.ws.serviceModel.EstadoServiceImpl;
 import br.unoesc.ws.serviceModel.ProdutorServiceImpl;
 import br.unoesc.ws.serviceModel.SafraServiceImpl;
-import br.unoesc.ws.webModelEntrada.TransacaoSampleModel;
+import br.unoesc.ws.webModelEntrada.IncluirTransacaoSampleModel;
 import java.util.Date;
 
 /** classe que contem os metodos de geracao de objetos
@@ -31,9 +31,9 @@ public class TransacaoFactory {
      * fato de esta ser uma classe filha da classe TransacaoDebito
      * @see TransacaoCredito
      *
-     * @param TransacaoSampleModel t
+     * @param IncluirTransacaoSampleModel t
      */
-    public Transacao criarTransacaoDebito(TransacaoSampleModel t)
+    public Transacao criarTransacaoDebito(IncluirTransacaoSampleModel t)
             throws CerealNotFoundException,
             EmpresaNaoAutorizadaException,
             ProdutorNotFoundException,

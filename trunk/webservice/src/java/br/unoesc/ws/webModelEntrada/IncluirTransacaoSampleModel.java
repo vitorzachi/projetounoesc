@@ -6,7 +6,7 @@ package br.unoesc.ws.webModelEntrada;
  * 
  * @author vitor
  */
-public class TransacaoSampleModel {
+public class IncluirTransacaoSampleModel {
 
     private Long codCereal;
     private Long codEmpresa;
@@ -16,10 +16,10 @@ public class TransacaoSampleModel {
     private Long idEstadoPlantio;
     private String senha;
 
-    public TransacaoSampleModel() {
+    public IncluirTransacaoSampleModel() {
     }
 
-    public TransacaoSampleModel(Long codCereal, Long codEmpresa, String cpfProdutor, String serieNotaFiscal, Long numNotaFiscal, Integer quantidade, Long idEstadoPlantio, String senha) {
+    public IncluirTransacaoSampleModel(Long codCereal, Long codEmpresa, String cpfProdutor, String serieNotaFiscal, Long numNotaFiscal, Integer quantidade, Long idEstadoPlantio, String senha) {
         this.codCereal = codCereal;
         this.codEmpresa = codEmpresa;
         this.cpfProdutor = cpfProdutor;
@@ -27,6 +27,7 @@ public class TransacaoSampleModel {
         this.numNotaFiscal = numNotaFiscal;
         this.quantidade = quantidade;
         this.senha = senha;
+        this.setIdEstadoPlantio(idEstadoPlantio);
     }
 
 
