@@ -23,7 +23,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * @author vitor
  */
 @Entity
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"nomeSafra","estadoPlantio_id"})})
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"nomeSafra","estadoPlantio_id","cereal_id"})})
 public class Safra extends GenericModel {
 
     @Id

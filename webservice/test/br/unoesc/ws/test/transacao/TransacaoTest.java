@@ -19,10 +19,10 @@ import static org.junit.Assert.*;
  */
 public class TransacaoTest {
 
-//    @Test
+    @Test
     public void insereTransacaoCredito() {
 
-        IncluirTransacaoSampleModel tm = new IncluirTransacaoSampleModel(1l, 2l, "05456216900", "1", new Long(2345), 250, 1l, "pass");
+        IncluirTransacaoSampleModel tm = new IncluirTransacaoSampleModel(1l, 2l, "05456216900", "1", new Long(2369), 250, 1l, "pass");
         TransacaoWS tws = new TransacaoWS();
         ObjetoRetorno o = tws.incluirCredito(tm);
         System.out.println(o.getCodigoRetorno());
@@ -33,7 +33,7 @@ public class TransacaoTest {
         assertTrue(true);
     }
 
-    @Test
+//    @Test
     public void insereTransacaoDebito() {
 
         IncluirTransacaoSampleModel tm = new IncluirTransacaoSampleModel(1l, 2l, "05456216900", "1", new Long(2353), 100, 1l, "pass");

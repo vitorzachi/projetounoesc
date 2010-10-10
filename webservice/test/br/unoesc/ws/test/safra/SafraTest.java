@@ -6,6 +6,7 @@ import br.unoesc.ws.model.Safra;
 import br.unoesc.ws.serviceModel.CerealServiceImpl;
 import br.unoesc.ws.serviceModel.EstadoServiceImpl;
 import br.unoesc.ws.serviceModel.SafraServiceImpl;
+import br.unoesc.ws.util.Validacoes;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +28,7 @@ public class SafraTest {
 
 
         try {
-            s.setFimSafra(new Date());
+            s.setFimSafra(Validacoes.adicionaDiasEmData(new Date(), 359));
             s.setInicioSafra(new Date());
             s.setCereal(c.getCerealPorNome("soja"));
             s.setEstadoPlantio(e.getById(1l));
