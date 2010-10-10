@@ -8,8 +8,8 @@ package br.unoesc.ws.configs;
  */
 public class CodigosRetorno {
 
-    public static final long ERRO_AO_SALVAR=0;
-    public static final long SUCESSO_AO_SALVAR=1;
+    public static final long ERRO_NA_OPERACAO=0;
+    public static final long SUCESSO_NA_OPERACAO=1;
     public static final long CODIGO_CEREAL_NAO_ENCONTRADO=2;
     public static final long CPF_PRODUTOR_NAO_ENCONTRADO=3;
     public static final long CODIGO_EMPRESA_NAO_ENCONTRADO=4;
@@ -19,5 +19,6 @@ public class CodigosRetorno {
     public static final long CODIGO_CIDADE_NAO_ENCONTRADO=8;
     public static final long CPF_INVALIDO=9;
     public static final long PARAMETRO_NULO=10;
+    public static final long TRANSACAO_NAO_ENCONTRADA=11;
 
 }

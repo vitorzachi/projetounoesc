@@ -9,15 +9,17 @@ import br.unoesc.ws.exceptions.ParametroNuloException;
 import br.unoesc.ws.exceptions.ProdutorNotFoundException;
 import br.unoesc.ws.exceptions.SalvarException;
 import br.unoesc.ws.exceptions.SenhaIncorretaException;
+import br.unoesc.ws.exceptions.TransacaoNotFoundException;
 import br.unoesc.ws.model.Produtor;
+import br.unoesc.ws.model.Transacao;
 import br.unoesc.ws.objectFactory.TransacaoFactory;
 import br.unoesc.ws.model.TransacaoCredito;
 import br.unoesc.ws.model.TransacaoDebito;
 import br.unoesc.ws.objectFactory.ProdutorFactory;
 import br.unoesc.ws.serviceModel.ProdutorServiceImpl;
-import br.unoesc.ws.serviceModel.SafraServiceImpl;
 import br.unoesc.ws.serviceModel.TransacaoCreditoServiceImpl;
 import br.unoesc.ws.serviceModel.TransacaoDebitoServiceImpl;
+import br.unoesc.ws.webModelEntrada.ExcluirTransacaoSampleModel;
 import br.unoesc.ws.webModelEntrada.ProdutorSampleModel;
 import br.unoesc.ws.webModelEntrada.IncluirTransacaoSampleModel;
 import br.unoesc.ws.webModelRetorno.ObjetoRetorno;
@@ -48,7 +50,8 @@ public class TransacaoWS {
         TransacaoCredito tc = null;
 
         try {
-            tc = new TransacaoFactory().criarTransacaoCredito((TransacaoDebito) new TransacaoFactory().criarTransacaoDebito(t));
+//            tc = new TransacaoFactory().criarTransacaoCredito((TransacaoDebito) new TransacaoFactory().criarTransacaoParaInclusao(t));
+            tc = (TransacaoCredito) new TransacaoFactory().criarTransacaoParaInclusao(t, new TransacaoCredito());
         } catch (CerealNotFoundException ex) {
             retorno = new ObjetoRetorno(CodigosRetorno.CODIGO_CEREAL_NAO_ENCONTRADO, ex.getMessage(), "código de cereal procurado", t.getCodCereal().toString());
             return retorno;
@@ -66,10 +69,10 @@ public class TransacaoWS {
         //após validações, persiste o objeto
         try {
             transacaoService.salvar(tc);
-            retorno = new ObjetoRetorno(CodigosRetorno.SUCESSO_AO_SALVAR, "salvo", "código da transação(lembre-se deste código)", tc.getId().toString());
+            retorno = new ObjetoRetorno(CodigosRetorno.SUCESSO_NA_OPERACAO, "salvo", "código da transação(lembre-se deste código)", tc.getId().toString());
             return retorno;
         } catch (SalvarException ex) {
-            retorno = new ObjetoRetorno(CodigosRetorno.ERRO_AO_SALVAR, ex.getMessage(), "houve um erro ao salvar", null);
+            retorno = new ObjetoRetorno(CodigosRetorno.ERRO_NA_OPERACAO, ex.getMessage(), "houve um erro ao salvar", "");
             return retorno;
         }
     }
@@ -84,7 +87,7 @@ public class TransacaoWS {
         TransacaoDebito tc = null;
 
         try {
-            tc = (TransacaoDebito) new TransacaoFactory().criarTransacaoDebito(t);
+            tc = (TransacaoDebito) new TransacaoFactory().criarTransacaoParaInclusao(t, new TransacaoDebito());
         } catch (CerealNotFoundException ex) {
             retorno = new ObjetoRetorno(CodigosRetorno.CODIGO_CEREAL_NAO_ENCONTRADO, ex.getMessage(), "código de cereal procurado", t.getCodCereal().toString());
             return retorno;
@@ -104,16 +107,16 @@ public class TransacaoWS {
 //   [ -----------  para o retorno do saldo --------------]            
             Long saldo = produtorService.getSaldoRoyalties(tc.getProdutor(), tc.getSafra());
 //   [ -----------  para o retorno do saldo --------------]
-            retorno = new ObjetoRetorno(CodigosRetorno.SUCESSO_AO_SALVAR, "salvo", "saldo após essa transação", saldo.toString());
+            retorno = new ObjetoRetorno(CodigosRetorno.SUCESSO_NA_OPERACAO, "salvo", "saldo após essa transação", saldo.toString());
             return retorno;
         } catch (SalvarException ex) {
-            retorno = new ObjetoRetorno(CodigosRetorno.ERRO_AO_SALVAR, ex.getMessage(), "houve um erro ao salvar", null);
+            retorno = new ObjetoRetorno(CodigosRetorno.ERRO_NA_OPERACAO, ex.getMessage(), "houve um erro ao salvar", "");
             return retorno;
         }
     }
 
     @WebMethod
-    public ObjetoRetorno incluirProdutor(@WebParam(name="dadosProdutor")ProdutorSampleModel p) {
+    public ObjetoRetorno incluirProdutor(@WebParam(name = "dadosProdutor") ProdutorSampleModel p) {
 
         ProdutorServiceImpl produtorService = new ProdutorServiceImpl();
         ObjetoRetorno retorno;
@@ -133,16 +136,73 @@ public class TransacaoWS {
         }
         try {
             produtorService.salvar(pr);
-            retorno = new ObjetoRetorno(CodigosRetorno.SUCESSO_AO_SALVAR, "salvo", "", "");
+            retorno = new ObjetoRetorno(CodigosRetorno.SUCESSO_NA_OPERACAO, "salvo", "", "");
             return retorno;
         } catch (SalvarException ex) {
-            retorno = new ObjetoRetorno(CodigosRetorno.ERRO_AO_SALVAR, ex.getMessage(), "houve um erro ao salvar", null);
+            retorno = new ObjetoRetorno(CodigosRetorno.ERRO_NA_OPERACAO, ex.getMessage(), "houve um erro ao salvar", "");
             return retorno;
         }
     }
 
-    public ObjetoRetorno excluiTransacaoDebito(){
+    @WebMethod
+    public ObjetoRetorno excluiTransacaoDebito(@WebParam(name="transacaoExcluirDebito")ExcluirTransacaoSampleModel t) {
+        Transacao tr;
+        TransacaoDebitoServiceImpl tDebitoImpl=new TransacaoDebitoServiceImpl();
+        ObjetoRetorno retorno = null;
+        try {
+            tr = new TransacaoFactory().criaTransacaoParaExclusao(t, new TransacaoDebito());
+        } catch (EmpresaNaoAutorizadaException ex) {
+            retorno = new ObjetoRetorno(CodigosRetorno.CODIGO_EMPRESA_NAO_ENCONTRADO, ex.getMessage(), "código de empresa procurado", t.getCodEmpresa().toString());
+            return retorno;
+        } catch (SenhaIncorretaException ex) {
+            retorno = new ObjetoRetorno(CodigosRetorno.LOGIN_DA_EMPRESA_INCORRETO, ex.getMessage(), "verifique seus os parâmetros de login", "pa55W0rd");
+            return retorno;
+        } catch (CerealNotFoundException ex) {
+            retorno = new ObjetoRetorno(CodigosRetorno.CODIGO_CEREAL_NAO_ENCONTRADO, ex.getMessage(), "código de cereal procurado", t.getIdCereal().toString());
+            return retorno;
+        } catch (TransacaoNotFoundException ex) {
+            retorno = new ObjetoRetorno(CodigosRetorno.TRANSACAO_NAO_ENCONTRADA, ex.getMessage(), "", "");
+            return retorno;
+        }
 
-        return null;
+        try {
+            tDebitoImpl.excluir(tr.getId());
+            retorno = new ObjetoRetorno(CodigosRetorno.SUCESSO_NA_OPERACAO, "excluido", "", "");
+            return retorno;
+        } catch (Exception e) {
+            retorno = new ObjetoRetorno(CodigosRetorno.ERRO_NA_OPERACAO, e.getMessage(), "", "");
+            return retorno;
+        }
+    }
+
+    @WebMethod
+    public ObjetoRetorno excluiTransacaoCredito(@WebParam(name="transacaoExcluirCredito")ExcluirTransacaoSampleModel t) {
+        Transacao tr;
+        TransacaoCreditoServiceImpl tCreditoImpl=new TransacaoCreditoServiceImpl();
+        ObjetoRetorno retorno = null;
+        try {
+            tr = new TransacaoFactory().criaTransacaoParaExclusao(t, new TransacaoCredito());
+        } catch (EmpresaNaoAutorizadaException ex) {
+            retorno = new ObjetoRetorno(CodigosRetorno.CODIGO_EMPRESA_NAO_ENCONTRADO, ex.getMessage(), "código de empresa procurado", t.getCodEmpresa().toString());
+            return retorno;
+        } catch (SenhaIncorretaException ex) {
+            retorno = new ObjetoRetorno(CodigosRetorno.LOGIN_DA_EMPRESA_INCORRETO, ex.getMessage(), "verifique seus os parâmetros de login", "pa55W0rd");
+            return retorno;
+        } catch (CerealNotFoundException ex) {
+            retorno = new ObjetoRetorno(CodigosRetorno.CODIGO_CEREAL_NAO_ENCONTRADO, ex.getMessage(), "código de cereal procurado", t.getIdCereal().toString());
+            return retorno;
+        } catch (TransacaoNotFoundException ex) {
+            retorno = new ObjetoRetorno(CodigosRetorno.TRANSACAO_NAO_ENCONTRADA, ex.getMessage(), "", "");
+            return retorno;
+        }
+
+        try {
+            tCreditoImpl.excluir(tr.getId());
+            retorno = new ObjetoRetorno(CodigosRetorno.SUCESSO_NA_OPERACAO, "excluido", "", "");
+            return retorno;
+        } catch (Exception e) {
+            retorno = new ObjetoRetorno(CodigosRetorno.ERRO_NA_OPERACAO, e.getMessage(), "", "");
+            return retorno;
+        }
     }
 }
