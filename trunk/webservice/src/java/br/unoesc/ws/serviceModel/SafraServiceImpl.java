@@ -15,11 +15,11 @@ import javax.persistence.EntityManager;
  */
 public class SafraServiceImpl extends GenericServiceImpl<Safra> {
 
-    public Safra getSafraCorrente(Cereal c,Estado estadoPlantio) {
-        return this.getSafraPelaData(c, new Date(),estadoPlantio);
+    public Safra getSafraCorrente(Cereal c) {
+        return this.getSafraPelaData(c, new Date());
     }
 
-    public Safra getSafraPelaData(Cereal c, Date d,Estado estadoPlantio) {
+    public Safra getSafraPelaData(Cereal c, Date d) {
         EntityManager em = null;
         Safra safra = null;
 
@@ -27,10 +27,9 @@ public class SafraServiceImpl extends GenericServiceImpl<Safra> {
             em = getEntityManager();
             Query query = em.createQuery("select s from Safra s where" +
                     " ((:d between s.inicioSafra and s.fimSafra)" +
-                    " and (s.cereal=:c) and (s.estadoPlantio=:e))");
+                    " and (s.cereal=:c))");
             query.setParameter("d", d);
             query.setParameter("c", c);
-            query.setParameter("e", estadoPlantio);
 
             try {
                 safra = (Safra) query.getSingleResult();
@@ -44,7 +43,7 @@ public class SafraServiceImpl extends GenericServiceImpl<Safra> {
 
     @Override
     public void salvar(Safra safra) throws SalvarException {
-        Safra s = this.getSafraCorrente(safra.getCereal(),safra.getEstadoPlantio());
+        Safra s = this.getSafraCorrente(safra.getCereal());
         if (s != null) {
             throw new SafraJaExisteException();
         }

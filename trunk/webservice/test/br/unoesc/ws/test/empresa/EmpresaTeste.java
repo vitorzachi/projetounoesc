@@ -20,6 +20,21 @@ public class EmpresaTeste {
         EmpresaServiceImpl ei=new EmpresaServiceImpl();
 
         e.setCnpj("83011247001889");
+        e.setNomePessoa("tirol");
+        e.setSenha("pass");
+
+        try {
+            ei.salvar(e);
+        } catch (SalvarException ex) {
+            Logger.getLogger(EmpresaTeste.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    @Test
+    public void insereEmpresa2(){
+        Empresa e=new Empresa();
+        EmpresaServiceImpl ei=new EmpresaServiceImpl();
+
+        e.setCnpj("83305235000119");
         e.setNomePessoa("alfa");
         e.setSenha("pass");
 

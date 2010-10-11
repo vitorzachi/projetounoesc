@@ -10,12 +10,16 @@ import br.unoesc.ws.exceptions.ProdutorNotFoundException;
 import br.unoesc.ws.exceptions.SalvarException;
 import br.unoesc.ws.exceptions.SenhaIncorretaException;
 import br.unoesc.ws.exceptions.TransacaoNotFoundException;
+import br.unoesc.ws.model.MultiplicadorEstadoSafra;
 import br.unoesc.ws.model.Produtor;
 import br.unoesc.ws.model.Transacao;
 import br.unoesc.ws.objectFactory.TransacaoFactory;
 import br.unoesc.ws.model.TransacaoCredito;
 import br.unoesc.ws.model.TransacaoDebito;
 import br.unoesc.ws.objectFactory.ProdutorFactory;
+import br.unoesc.ws.serviceModel.CerealServiceImpl;
+import br.unoesc.ws.serviceModel.EstadoServiceImpl;
+import br.unoesc.ws.serviceModel.MultiplicadorEstadoSafraServiceImpl;
 import br.unoesc.ws.serviceModel.ProdutorServiceImpl;
 import br.unoesc.ws.serviceModel.TransacaoCreditoServiceImpl;
 import br.unoesc.ws.serviceModel.TransacaoDebitoServiceImpl;
@@ -45,13 +49,19 @@ public class TransacaoWS {
     public ObjetoRetorno incluirCredito(@WebParam(name = "transacaoCredito") IncluirTransacaoSampleModel t) {
 
         TransacaoCreditoServiceImpl transacaoService = new TransacaoCreditoServiceImpl();
+        EstadoServiceImpl es=new EstadoServiceImpl();
+        CerealServiceImpl c=new CerealServiceImpl();
         ObjetoRetorno retorno;
 
         TransacaoCredito tc = null;
 
         try {
-//            tc = new TransacaoFactory().criarTransacaoCredito((TransacaoDebito) new TransacaoFactory().criarTransacaoParaInclusao(t));
             tc = (TransacaoCredito) new TransacaoFactory().criarTransacaoParaInclusao(t, new TransacaoCredito());
+//    [-------------------------------]
+            MultiplicadorEstadoSafraServiceImpl mi=new MultiplicadorEstadoSafraServiceImpl();
+            MultiplicadorEstadoSafra m=mi.getMultiplicadorSafraCorrentePorEstado(c.getCerealById(t.getCodCereal()),es.getById(t.getIdEstadoPlantio()));
+            tc.setMultiplicador(m);
+//    [-------------------------------]
         } catch (CerealNotFoundException ex) {
             retorno = new ObjetoRetorno(CodigosRetorno.CODIGO_CEREAL_NAO_ENCONTRADO, ex.getMessage(), "código de cereal procurado", t.getCodCereal().toString());
             return retorno;

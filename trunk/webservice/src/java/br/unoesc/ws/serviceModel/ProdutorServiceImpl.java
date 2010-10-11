@@ -59,7 +59,7 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor> {
             ent.begin();
             Query qCredito = em.createQuery("select t " +
                     "from TransacaoCredito t where ((t.produtor=:p) and " +
-                    "(t.safra=:s) and (t.boletoGerado.pago=true))");
+                    "(t.multiplicador.safra=:s) and (t.boletoGerado.pago=true))");
 
             qCredito.setParameter("p", p);
             qCredito.setParameter("s", s);
@@ -73,7 +73,7 @@ public class ProdutorServiceImpl extends GenericServiceImpl<Produtor> {
         }
 
         for(TransacaoCredito tr:listaTransacoes){
-            credito+=(tr.getQuantidade()*tr.getSafra().getMultiplicadorCredito());
+            credito+=(tr.getQuantidade()*tr.getMultiplicador().getMultiplicador());
         }
 
         return credito;

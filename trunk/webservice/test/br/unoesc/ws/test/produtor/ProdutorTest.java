@@ -74,7 +74,7 @@ public class ProdutorTest {
         }
 
         try {
-            saldo=pi.getSaldoRoyalties(p, si.getSafraCorrente(ci.getCerealPorNome("soja"),e.getById(1l)));
+            saldo=pi.getSaldoRoyalties(p, si.getSafraCorrente(ci.getCerealPorNome("soja")));
         } catch (CerealNotFoundException ex) {
             fail(ex.getMessage());
         }

@@ -57,7 +57,7 @@ public class TransacaoFactory {
 //--------------[ setando os parametros ]------------------------
         tipoClasseRetorno.setDataTransacao(new Date());
 
-        tipoClasseRetorno.setSafra(s.getSafraCorrente(c.getCerealById(t.getCodCereal()), es.getById(t.getIdEstadoPlantio())));
+        tipoClasseRetorno.setSafra(s.getSafraCorrente(c.getCerealById(t.getCodCereal())));
 //        tc.setCereal(); //exception ok
 
         empresa = e.getEmpresaById(t.getCodEmpresa());

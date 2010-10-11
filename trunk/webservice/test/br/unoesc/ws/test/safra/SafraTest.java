@@ -24,15 +24,12 @@ public class SafraTest {
         Safra s = new Safra();
         SafraServiceImpl si = new SafraServiceImpl();
         CerealServiceImpl c = new CerealServiceImpl();
-        EstadoServiceImpl e=new EstadoServiceImpl();
 
 
         try {
             s.setFimSafra(Validacoes.adicionaDiasEmData(new Date(), 359));
             s.setInicioSafra(new Date());
             s.setCereal(c.getCerealPorNome("soja"));
-            s.setEstadoPlantio(e.getById(1l));
-            s.setMultiplicadorCredito(new Long(70));
             s.setNomeSafra();
             si.salvar(s);
             assertTrue(true);
@@ -44,24 +41,22 @@ public class SafraTest {
     }
 
     @Test
-    public void insereSafra2Teste() {
+    public void insereSafraTeste2() {
         Safra s = new Safra();
         SafraServiceImpl si = new SafraServiceImpl();
         CerealServiceImpl c = new CerealServiceImpl();
 
-
         try {
-            s.setFimSafra(new Date());
+            s.setFimSafra(Validacoes.adicionaDiasEmData(new Date(), 359));
             s.setInicioSafra(new Date());
-            s.setCereal(c.getCerealPorNome("soja"));
-            s.setMultiplicadorCredito(new Long(70));
+            s.setCereal(c.getCerealPorNome("milho"));
             s.setNomeSafra();
             si.salvar(s);
-            fail("falha no teste 2. nao pode inserir");
-        } catch (SalvarException ex) {
             assertTrue(true);
+        } catch (SalvarException ex) {
+            fail(ex.getMessage());
         }catch (CerealNotFoundException ex){
-            fail(ex.getMessage()+ " no teste 2");
+            fail(ex.getMessage());
         }
     }
 
@@ -72,7 +67,7 @@ public class SafraTest {
         EstadoServiceImpl e=new EstadoServiceImpl();
         SafraServiceImpl si=new SafraServiceImpl();
         try {
-            s = si.getSafraCorrente(c.getCerealPorNome("soja"),e.getById(1l));
+            s = si.getSafraCorrente(c.getCerealPorNome("soja"));
         } catch (CerealNotFoundException ex) {
             Logger.getLogger(SafraTest.class.getName()).log(Level.SEVERE, null, ex);
         }
