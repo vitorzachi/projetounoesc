@@ -15,17 +15,9 @@ public class TransacaoCredito extends Transacao {
     @OneToOne(cascade = CascadeType.ALL)
     private Boleto boletoGerado;
     @ManyToOne
-    private Estado estadoPlantio;
+    private MultiplicadorEstadoSafra multiplicador;
 
     public TransacaoCredito() {
-    }
-
-    public Estado getEstadoPlantio() {
-        return estadoPlantio;
-    }
-
-    public void setEstadoPlantio(Estado estadoPlantio) {
-        this.estadoPlantio = estadoPlantio;
     }
 
     public Boleto getBoletoGerado() {
@@ -35,4 +27,13 @@ public class TransacaoCredito extends Transacao {
     public void setBoletoGerado(Boleto boletoGerado) {
         this.boletoGerado = boletoGerado;
     }
+
+    public MultiplicadorEstadoSafra getMultiplicador() {
+        return multiplicador;
+    }
+
+    public void setMultiplicador(MultiplicadorEstadoSafra multiplicador) {
+        this.multiplicador = multiplicador;
+    }
+    
 }

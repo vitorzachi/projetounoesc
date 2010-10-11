@@ -23,7 +23,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * @author vitor
  */
 @Entity
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"nomeSafra","estadoPlantio_id","cereal_id"})})
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"nomeSafra","cereal_id"})})
 public class Safra extends GenericModel {
 
     @Id
@@ -39,10 +39,7 @@ public class Safra extends GenericModel {
     private Date fimSafra;
     @ManyToOne
     private Cereal cereal;
-    @ManyToOne
-    private Estado estadoPlantio;
-    @Column(nullable = false)
-    private Long multiplicadorCredito;
+   
 
     public Safra() {
     }
@@ -89,23 +86,6 @@ public class Safra extends GenericModel {
 
     public void setCereal(Cereal cereal) {
         this.cereal = cereal;
-    }
-
-    public Long getMultiplicadorCredito() {
-        return multiplicadorCredito;
-    }
-
-    public Estado getEstadoPlantio() {
-        return estadoPlantio;
-    }
-
-    public void setEstadoPlantio(Estado estadoPlantio) {
-        this.estadoPlantio = estadoPlantio;
-    }
-
-
-    public void setMultiplicadorCredito(Long multiplicadorCredito) {
-        this.multiplicadorCredito = multiplicadorCredito;
     }
 
     @Override

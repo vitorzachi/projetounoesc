@@ -25,7 +25,7 @@ public class PrecoSafraTest {
             SafraServiceImpl s = new SafraServiceImpl();
 
             ps.setCereal(c.getCerealPorNome("soja"));
-            ps.setSafra(s.getSafraCorrente(c.getCerealPorNome("soja"),e.getById(1l)));
+            ps.setSafra(s.getSafraCorrente(c.getCerealPorNome("soja")));
             ps.setPrecoPorKgSemente(new Float(0.7f));
             psi.salvar(ps);
             assertTrue(true);
@@ -33,4 +33,22 @@ public class PrecoSafraTest {
             fail(ex.getMessage());
         }
     }
+//    @Test
+//    public void inserePreco2(){
+//        try {
+//            PrecoSafra ps = new PrecoSafra();
+//            PrecoSafraServiceImpl psi = new PrecoSafraServiceImpl();
+//            EstadoServiceImpl e=new EstadoServiceImpl();
+//            CerealServiceImpl c = new CerealServiceImpl();
+//            SafraServiceImpl s = new SafraServiceImpl();
+//
+//            ps.setCereal(c.getCerealPorNome("soja"));
+//            ps.setSafra(s.getSafraCorrente(c.getCerealPorNome("soja")));
+//            ps.setPrecoPorKgSemente(new Float(0.8f));
+//            psi.salvar(ps);
+//            assertTrue(true);
+//        } catch (Exception ex) {
+//            fail(ex.getMessage());
+//        }
+//    }
 }

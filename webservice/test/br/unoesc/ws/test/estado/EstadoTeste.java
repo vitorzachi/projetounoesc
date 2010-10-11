@@ -32,4 +32,17 @@ public class EstadoTeste {
             Logger.getLogger(EstadoTeste.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+     @Test
+    public void insereEstadoTeste2(){
+        Estado e=new Estado();
+        EstadoServiceImpl ie=new EstadoServiceImpl();
+
+        e.setNomeEstado("paraná");
+        e.setSiglaEstado("pr");
+        try {
+            ie.salvar(e);
+        } catch (SalvarException ex) {
+            Logger.getLogger(EstadoTeste.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

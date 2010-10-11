@@ -28,6 +28,18 @@ public class CerealTeste {
             fail(ex.getMessage());
         }
     }
+    @Test
+    public void insereCerea2l(){
+        CerealServiceImpl ci=new CerealServiceImpl();
+        Cereal c=new Cereal();
+        c.setNome("milho");
+        try {
+            ci.salvar(c);
+            assertTrue(true);
+        } catch (SalvarException ex) {
+            fail(ex.getMessage());
+        }
+    }
 
     @Test
     public void getCerealPorNomeTeste(){
