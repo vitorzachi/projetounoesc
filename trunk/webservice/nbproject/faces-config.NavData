@@ -2,18 +2,11 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="jsf/cidade/Detail.jsp" x="900" y="150" zoom="true"/>
-        <Node id="jsf/estado/Edit.jsp" x="1150" y="150" zoom="true"/>
-        <Node id="jsf/cidade/Edit.jsp" x="150" y="300" zoom="true"/>
-        <Node id="jsf/cidade/New.jsp" x="400" y="300" zoom="true"/>
-        <Node id="jsf/estado/New.jsp" x="150" y="600" zoom="true"/>
-        <Node id="welcomeJSF.jsp" x="400" y="450" zoom="true"/>
-        <Node id="jsf/cidade/List.jsp" x="150" y="450" zoom="true"/>
-        <Node id="jsf/estado/Detail.jsp" x="650" y="300" zoom="true"/>
-        <Node id="jsf/estado/List.jsp" x="400" y="150" zoom="true"/>
-        <Node id="/media/Documentos_2/MATERIAIS_FACULDADE/MATERIAIS ANO 2010-FACULDADE/materiais 6 periodo/trabalho integrado(eng.soft,BD II,metodologia,ling.Programacao)/WS/webservice/web/welcomeJSF.jsp" x="900" y="300" zoom="true"/>
-        <Node id="/media/Documentos_2/MATERIAIS_FACULDADE/MATERIAIS ANO 2010-FACULDADE/materiais 6 periodo/trabalho integrado(eng.soft,BD II,metodologia,ling.Programacao)/WS/webservice/web/index.jsp" x="650" y="150" zoom="true"/>
-        <Node id="/media/Documentos_2/MATERIAIS_FACULDADE/MATERIAIS ANO 2010-FACULDADE/materiais 6 periodo/trabalho integrado(eng.soft,BD II,metodologia,ling.Programacao)/WS/webservice/web/pgnotfound.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="pgnotfound.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="sucesso.jsp" x="150" y="450" zoom="true"/>
+        <Node id="index.jsp" x="150" y="300" zoom="true"/>
+        <Node id="cadProdutor.jsp" x="150" y="150" zoom="true"/>
+        <Node id="falha.jsp" x="900" y="150" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

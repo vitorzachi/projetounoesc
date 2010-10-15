@@ -1,12 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.unoesc.ws.test.transacao;
 
+import br.unoesc.ws.exceptions.TransacaoNotFoundException;
+import br.unoesc.ws.model.TransacaoDebito;
+import br.unoesc.ws.serviceModel.TransacaoDebitoServiceImpl;
 import br.unoesc.ws.webModelEntrada.IncluirTransacaoSampleModel;
 import br.unoesc.ws.webModelRetorno.ObjetoRetorno;
 import br.unoesc.ws.webServiceMethods.TransacaoWS;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -44,7 +45,7 @@ public class TransacaoTest {
         assertTrue(true);
     }
 
-    @Test
+//    @Test
     public void insereTransacaoDebito() {
 
         IncluirTransacaoSampleModel tm = new IncluirTransacaoSampleModel(1l, 2l, "05456216900", "1", new Long(2354), 100, 1l, "pass");
@@ -56,5 +57,17 @@ public class TransacaoTest {
         System.out.println(o.getDescricaoCodRetornoAdicional());
         System.out.println(o.getCodigoRetornoAdicional());
         assertTrue(true);
+    }
+
+    @Test
+    public void getTransacao(){
+        TransacaoDebitoServiceImpl ti=new TransacaoDebitoServiceImpl();
+        TransacaoDebito t=null;
+        try {
+            t = ti.getTransacao(new Long(2354), "1", 2l, 1l);
+        } catch (TransacaoNotFoundException ex) {
+            fail("not found...");
+        }
+        assertNotNull(t);
     }
 }
