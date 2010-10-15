@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.unoesc.ws.test.entitymanager;
 
 import javax.persistence.EntityManager;
