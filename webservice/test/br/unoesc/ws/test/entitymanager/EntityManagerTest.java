@@ -4,13 +4,9 @@
  */
 package br.unoesc.ws.test.entitymanager;
 
-import br.unoesc.ws.model.Safra;
-import br.unoesc.ws.model.TransacaoCredito;
-import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
