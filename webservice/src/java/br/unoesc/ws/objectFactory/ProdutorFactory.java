@@ -15,14 +15,20 @@ import br.unoesc.ws.webModelEntrada.ProdutorSampleModel;
  */
 public class ProdutorFactory {
 
+    private Produtor produtor;
+
+    public ProdutorFactory() {
+        produtor=new Produtor();
+    }
+
     public Produtor criarProdutor(ProdutorSampleModel p) throws CidadeNotFoundException, CPFInvalidoException, ParametroNuloException{
-        Produtor pr=new Produtor();
+       // Produtor pr=new Produtor();
         CidadeServiceImpl cidadeService=new CidadeServiceImpl();
 
-        pr.setCidade(cidadeService.getCidadeById(p.getIdCidade()));
+        produtor.setCidade(cidadeService.getCidadeById(p.getIdCidade()));
 
         if(Validacoes.validaCPF(p.getCpf())){
-            pr.setCpf(p.getCpf());
+            produtor.setCpf(p.getCpf());
         }else{
             throw new CPFInvalidoException();
         }
@@ -30,15 +36,15 @@ public class ProdutorFactory {
         if(p.getEndereco()==null){
             throw new ParametroNuloException("endereco");
         }else{
-            pr.setEndereco(p.getEndereco());
+            produtor.setEndereco(p.getEndereco());
         }
 
         if(p.getNome()==null){
             throw new ParametroNuloException("nomePessoa");
         }else{
-            pr.setNomePessoa(p.getNome());
+            produtor.setNomePessoa(p.getNome());
         }
 
-        return pr;
+        return produtor;
     }
 }

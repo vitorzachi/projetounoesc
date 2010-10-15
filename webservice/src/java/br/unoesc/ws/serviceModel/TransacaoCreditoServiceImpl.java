@@ -45,8 +45,8 @@ public class TransacaoCreditoServiceImpl extends GenericServiceImpl<TransacaoCre
             Query q = em.createQuery("select t from TransacaoCredito t where" +
                     " ((t.numeroNotaFiscal=:numNotaFiscal)and" +
                     "(t.serieNotaFiscal=:serieNotaFiscal)and" +
-                    "(t.empresaGeradora=:codEmpresa)and" +
-                    "(t.safra.cereal=:codCereal)and" +
+                    "(t.empresaGeradora.id=:codEmpresa)and" +
+                    "(t.safra.cereal.id=:codCereal)and" +
                     "(:d between t.safra.inicioSafra and t.safra.fimSafra))");
 
             q.setParameter("numNotaFiscal", numNotaFiscal);

@@ -31,7 +31,7 @@ public class GenericServiceImpl<ModelClass extends GenericModel> {
 
     private static void createFactory() {
         if (emf == null) {
-            emf = Persistence.createEntityManagerFactory("webserviceUnit");
+            emf = Persistence.createEntityManagerFactory("webService");
         }
     }
 
