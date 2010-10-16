@@ -4,7 +4,7 @@
 <%@taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
 <%@taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
 
-<%@ include file="cabecalho.jsp"%>
+<%@ include file="/cabecalho.jsp"%>
 
 <f:view>
     <html>
@@ -24,7 +24,7 @@
                 <h:outputText value="Senha:"/>
                 <h:inputText id="senha" value="#{empresa.empresa.senha}" title="Senha" />
                 <h:outputText value="Cnpj:"/>
-                <h:inputText id="cnpj" value="#{empresa.empresa.cnpj}" title="Cnpj" required="true" requiredMessage="The cnpj field is required." />
+                <h:inputText id="cnpj" value="#{empresa.empresa.cnpj}" title="Cnpj" required="true" requiredMessage="Campo CNPJ é Obrigatório." />
                 <h:outputText value="Cidade:"/>
                 <h:selectOneMenu id="cidade" value="#{empresa.empresa.cidade}" title="Cidade" >
                     <f:selectItems value="#{cidade.cidadeItemsAvailableSelectOne}"/>
@@ -32,20 +32,20 @@
                 <h:outputText value="Endereco:"/>
                 <h:inputText id="endereco" value="#{empresa.empresa.endereco}" title="Endereco" />
                 <h:outputText value="NomePessoa:"/>
-                <h:inputText id="nomePessoa" value="#{empresa.empresa.nomePessoa}" title="NomePessoa" required="true" requiredMessage="The nomePessoa field is required." />
+                <h:inputText id="nomePessoa" value="#{empresa.empresa.nomePessoa}" title="Nome" required="true" requiredMessage="Nome é Obrigatório." />
 
             </h:panelGrid>
             <br />
-            <h:commandLink action="#{empresa.create}" value="Create"/>
+            <h:commandLink action="#{empresa.create}" value="Criar"/>
             <br />
             <br />
-            <h:commandLink action="#{empresa.listSetup}" value="Show All Empresa Items" immediate="true"/>
+            <h:commandLink action="#{empresa.listSetup}" value="Mostrar Todas as Empresas" immediate="true"/>
             <br />
             <br />
-            <h:commandLink value="Index" action="welcome" immediate="true" />
+            <h:commandLink value="Início" action="welcome" immediate="true" />
 
         </h:form>
         </body>
     </html>
 </f:view>
-<%@ include file="rodape.jsp"%>
+<%@ include file="/rodape.jsp"%>

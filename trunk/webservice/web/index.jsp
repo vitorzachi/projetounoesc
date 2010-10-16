@@ -5,7 +5,4 @@
     See <welcome-file-list> in web.xml file.
 --%>
 
-        <jsp:forward page="estado/New.jsf"/> 
-
-    </body>
-</html>
+        <jsp:forward page="welcomeJSF.jsf"/>

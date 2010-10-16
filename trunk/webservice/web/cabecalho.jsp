@@ -12,11 +12,23 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>WEBSERVICE</title>
+        <style type="text/css">
+            <!--
+            body {background-color: #3CB371;} /*branco*/
+            p {background-color: #CDC5BF;}    /*  verde   */
+            a:link, a:visited, a:active {
+                text-decoration: none;
+            }
+            a:hover {text-decoration: none;
+                     background:#528B8B;
+                     color: #000;
+            }
+
+            -->
+        </style>
     </head>
-    <body>
-            <img src="img/favicon.png" />
+    <p>        <img alt=""  src="img/favicon.png" />  
         WebService<br />
-        _____________________________________________________________________________________________________________________________________
-    
+    </p>
 </body>
 </html>

@@ -13,10 +13,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+
+    <style type="text/css">
+            <!--
+            p {background-color: #CDC5BF;}    /*  verde   */
+            -->
+        </style>
     <body>
-         _____________________________________________________________________________________________________________________________________
 <center>
-<br /> <br />     Copyright 2010 - Todos os direitos reservados
+    <p>   Copyright 2010 - Todos os direitos reservados   </p>
 </center>
     </body>
 </html>
