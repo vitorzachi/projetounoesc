@@ -2,6 +2,7 @@
 <%@page pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
 <%@taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
+<%@ include file="/cabecalho.jsp"%>
 <f:view>
     <html>
         <head>
@@ -51,3 +52,4 @@
         </body>
     </html>
 </f:view>
+<%@ include file="/rodape.jsp"%>

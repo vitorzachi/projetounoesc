@@ -9,31 +9,33 @@
 <%--
     This file is an entry point for JavaServer Faces application.
 --%>
+<%@ include file="/cabecalho.jsp"%>
 <f:view>
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <title>JSP Page</title>
+            <title>Início</title>
 <link rel="stylesheet" type="text/css" href="/webservice/jsfcrud.jsf" />
         </head>
         <body>
-            <h1><h:outputText value="JavaServer Faces"/></h1>
+            <h1><h:outputText value="Início"/></h1>
                 <h:form>
-                    <h:commandLink action="#{produtor.listSetup}" value="Show All Produtor Items"/>
+                    <h:commandLink action="#{produtor.listSetup}" value="Produtor"/>
                 </h:form>
 
                 <h:form>
-                    <h:commandLink action="#{estado.listSetup}" value="Show All Estado Items"/>
+                    <h:commandLink action="#{estado.listSetup}" value="Estado"/>
                 </h:form>
 
                 <h:form>
-                    <h:commandLink action="#{cidade.listSetup}" value="Show All Cidade Items"/>
+                    <h:commandLink action="#{cidade.listSetup}" value="Cidade"/>
                 </h:form>
 
                 <h:form>
-                    <h:commandLink action="#{empresa.listSetup}" value="Show All Empresa Items"/>
+                    <h:commandLink action="#{empresa.listSetup}" value="Empresa"/>
                 </h:form>
 
         </body>
     </html>
 </f:view>
+<%@ include file="/rodape.jsp"%>
