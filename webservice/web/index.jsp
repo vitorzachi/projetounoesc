@@ -5,4 +5,4 @@
     See <welcome-file-list> in web.xml file.
 --%>
 
-        <jsp:forward page="welcomeJSF.jsf"/>
+        <jsp:forward page="login.jsf"/>
