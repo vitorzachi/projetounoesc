@@ -1,0 +1,70 @@
+body{
+
+	font-family: Arial, Verdana, Helvetica, sans-serif; 
+	font-size:14px;
+	margin:0;
+}
+
+#header {
+  width: 100%;
+  background-color: #b6cf84;
+  border-top: 5px solid #94ae62;
+  border-bottom: 3px solid #d8efa6;
+  padding: 3px 0 10px 0;
+}
+
+.logo {
+	float: left;
+	margin: 0 20px;
+	border: 0;
+}
+
+div#login{
+
+    margin: 0 auto;
+	width:300px;
+	padding:14px;
+}
+
+
+div#login label{
+	display:block;
+	font-weight:bold;
+	text-align:right;
+	width:50px;
+	float:left;
+	padding-top:6px;
+	color:#036;
+}
+
+
+div#login input{
+	margin:2px 0 30px 10px;
+	height:30px;
+	border:1px solid #CCC;
+	font:16px Arial, Helvetica, sans-serif;
+	padding:5px;
+}
+
+
+div#login fieldset{
+	width:300px;
+	padding-top:15px;
+	border:2px dotted #CCC;
+}
+	
+
+div#login input#acessar{
+	display:block;
+	width:100px;
+	height:40px;
+	float:right;
+	margin-right:40px;
+}
+
+div#login ul li,a{
+	color: 	 #C0FF3E;
+	line-height:20px;
+	list-style-type:none;
+}
+

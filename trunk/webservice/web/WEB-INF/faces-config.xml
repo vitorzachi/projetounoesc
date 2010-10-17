@@ -8,23 +8,17 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
 
 <managed-bean>
-    <managed-bean-name>produtor</managed-bean-name>
-    <managed-bean-class>br.unoesc.ws.configs.ProdutorController</managed-bean-class>
-
+    <managed-bean-name>loginBean</managed-bean-name>
+    <managed-bean-class>br.unoesc.ws.serviceModel.LoginBean</managed-bean-class>
     <managed-bean-scope>session</managed-bean-scope></managed-bean>
 
 <navigation-rule>
-    <from-view-id>/cadProdutor.jsp</from-view-id>
-
+   
     <navigation-case>
         <from-outcome>sucesso</from-outcome>
-        <to-view-id>/sucesso.jsp</to-view-id>
+        <to-view-id>/welcomJSF.jsp</to-view-id>
     </navigation-case>
 
-    <navigation-case>
-        <from-outcome>falha</from-outcome>
-        <to-view-id>/falha.jsp</to-view-id>
-    </navigation-case>
 </navigation-rule>
     <application>
         <el-resolver>br.unoesc.ws.configs.util.JsfCrudELResolver</el-resolver>
@@ -180,6 +174,44 @@
         <navigation-case>
             <from-outcome>produtor_detail</from-outcome>
             <to-view-id>/produtor/Detail.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>usuario</managed-bean-name>
+        <managed-bean-class>br.unoesc.ws.configs.UsuarioController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>usuarioJpa</managed-bean-name>
+        <managed-bean-class>br.unoesc.ws.configs.UsuarioJpaController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <converter>
+        <converter-for-class>br.unoesc.ws.model.Usuario</converter-for-class>
+        <converter-class>br.unoesc.ws.configs.UsuarioConverter</converter-class>
+    </converter>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>usuario_create</from-outcome>
+            <to-view-id>/usuario/New.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>usuario_list</from-outcome>
+            <to-view-id>/usuario/List.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>usuario_edit</from-outcome>
+            <to-view-id>/usuario/Edit.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>usuario_detail</from-outcome>
+            <to-view-id>/usuario/Detail.jsp</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

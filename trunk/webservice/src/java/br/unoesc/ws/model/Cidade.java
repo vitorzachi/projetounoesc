@@ -7,6 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import org.apache.commons.lang.builder.CompareToBuilder;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  *
@@ -50,5 +55,34 @@ public class Cidade extends GenericModel{
         this.nomeCidade = nomeCidade;
     }
 
+    @Override
+    public boolean equals(Object obj){
+     if(obj == null){
+         return false;
+     }
+        Cidade outro=(Cidade)obj;
+        return new EqualsBuilder()
+                .append(this.getNomeCidade(),outro.getNomeCidade())
+                .isEquals();
+    }
+
+ @Override
+ public int hashCode(){
+     return new HashCodeBuilder()
+             .append(this.getNomeCidade())
+             .hashCode();
+ }
+
+ @Override
+ public String toString(){
+     return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
+             .append("Nome",this.getNomeCidade()).toString();
+ }
+
+ public int compareTo(Cidade o){
+     return new CompareToBuilder()
+             .append(this.getNomeCidade(),o.getNomeCidade())
+             .toComparison();
+ }
 
 }
